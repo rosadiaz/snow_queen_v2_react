@@ -20,7 +20,8 @@ function initMap() {
   let map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: {lat: 49.2860, lng: -122.8130},
-    mapTypeId: google.maps.MapTypeId.SATELLITE
+    mapTypeId: google.maps.MapTypeId.SATELLITE,
+    tilt:0
   });
   let geocoder = new google.maps.Geocoder();
 
@@ -42,9 +43,8 @@ function geocodeAddress(geocoder, resultsMap) {
         position: results[0].geometry.location
       });
       console.log("===========================================")
-      console.log(resultsMap)
+      console.log(address)
       console.log("===========================================")
-  
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
