@@ -13,24 +13,31 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
-    center: {lat: 49.2860, lng: -122.8130}
-  });
-  var geocoder = new google.maps.Geocoder();
 
-  document.getElementById('submit').addEventListener('click', function() {
+let marker = null;
+
+function initMap() {
+  let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: {lat: 49.2860, lng: -122.8130},
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  });
+  let geocoder = new google.maps.Geocoder();
+
+  document.getElementById('AddressSearch').addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (marker) { marker.setMap(null) }
     geocodeAddress(geocoder, map);
   });
 }
 
 function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
-  geocoder.geocode({'address': address}, function(results, status) {
+  let address = document.getElementById('address').value;
+  geocoder.geocode({'address': address, 'region': "CA"}, function(results, status) {
     if (status === 'OK') {
-      resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
+      resultsMap.panTo(results[0].geometry.location);
+      resultsMap.setZoom(20);
+      marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location
       });
