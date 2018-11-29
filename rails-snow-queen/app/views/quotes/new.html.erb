@@ -1,16 +1,24 @@
-<h1>Quote calculator</h1>
+<div class="d-flex row">
+   <div id="panel" class="col-4 p-5">
+      <h1>Quote calculator</h1>
+      <p>Get a free quote for a salting or snow clearing service</p>
 
-<p>Get a free quote for a salting or snow clearing service</p>
-
-   <div id="floating-panel">
       <form action="" id="AddressSearch">
-         <label for="address">Address:</label>
-         <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody">
-         <input id="submit" type="submit" value="Search">
+         <label for="address">Search your location:</label><br>
+         <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" size="40">
+         <input id="submit" type="submit" value="Find" class="btn btn-light btn-sm">
       </form>
+      <h4 class="mt-5"><%#= this.geocodedAddress %>123 Street Rd,</h4>
+      <h4>Funkytown,</h4> 
+      <h4>V3C5K4</h4>
+      <h4 id="calculated-area" class="m-3 mt-5">Selected area: _______ sq ft</h4>
+      <h3 id="total-due" class="text-right p-3">Total    $____.__</h3>
+      <button class="btn btn-block btn-warning">Submit request for service</button>
    </div>
-   <div id="map"></div>
+   <div id="map" class="col-8">
+   </div>
+</div>
 
-   <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=drawing&callback=initMap">
-   </script>
+<script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=drawing&callback=initMap">
+</script>
