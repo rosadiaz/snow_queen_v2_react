@@ -6,10 +6,12 @@ class Map {
     this.geocoder = this.initGeocoder();
     this.marker = null;
     this.geocodedAddress = null;
-    this.polygon = null;
+    this.polygons = [];
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
+    this.handleRemovePolygon = this.handleRemovePolygon.bind(this);
+    this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
     this.addListeners()
   }
   
@@ -51,7 +53,7 @@ class Map {
     const removeControlDiv = document.createElement('div');
     removeControlDiv.classList.add("map-btn")
     removeControlDiv.title = 'Click to remove selected area from the map';
-    removeControlDiv.innerHTML = 'Remove selection';
+    removeControlDiv.innerHTML = 'Remove last';
 
     removeControlDiv.index = 1;
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeControlDiv);
@@ -65,10 +67,8 @@ class Map {
 
   addListeners() {
     document.getElementById('AddressSearch').addEventListener('submit', this.handleSearchSubmit);
-    this.removeControl.addEventListener('click', function() {
-      // polygon.setMap(null);
-      console.log("remove polygon")
-    });
+    this.removeControl.addEventListener('click', this.handleRemovePolygon);
+    this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated)
   }
   
   handleSearchSubmit(event) {
@@ -94,5 +94,16 @@ class Map {
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
+  }
+
+  handleRemovePolygon() {
+    this.polygons.pop().setMap(null);
+
+    // this.polygons.setMap(null);
+  }
+
+  handlePolygonCreated(polygon){
+    this.polygons.push(polygon);
+    console.log(this.polygons)
   }
 }
