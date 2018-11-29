@@ -1,5 +1,5 @@
 class Map {
-	constructor() {
+	constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
     this.removeControl = this.initRemoveControl();
@@ -7,6 +7,7 @@ class Map {
     this.marker = null;
     this.geocodedAddress = null;
     this.polygons = [];
+    this.onGeocodingResponse = config.onGeocodingResponse;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
@@ -91,6 +92,7 @@ class Map {
         position: results[0].geometry.location
       });
       this.geocodedAddress = results[0].formatted_address;
+      this.onGeocodingResponse(this.geocodedAddress);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }

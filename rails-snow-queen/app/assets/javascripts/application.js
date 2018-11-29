@@ -18,5 +18,10 @@
 //= require_tree .
 
 function initMap() {
-  new Map();
+  const quotingPanel = new QuotingPanel();
+  console.log(quotingPanel.showAddress)
+  const map = new Map({
+    onGeocodingResponse: quotingPanel.showAddress,
+  });
 }
+
