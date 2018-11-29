@@ -11,8 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  */
- @import 'bootstrap';
-
 $theme-colors: (
   "primary":#61D5DD,
   "warning":#fa7f28,
@@ -22,6 +20,9 @@ $theme-colors: (
   "light": #F6F7F7,
   "dark": #177E89
 );
+
+@import 'bootstrap';
+
 
 header {
   background-color: rgba(97, 213, 221, 0.452);
@@ -52,4 +53,8 @@ header {
   line-height: 20px;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.hidden {
+  display: none;
 }
