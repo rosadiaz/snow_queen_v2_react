@@ -8,11 +8,12 @@ class Map {
     this.geocodedAddress = null;
     this.polygons = [];
     this.onGeocodingResponse = config.onGeocodingResponse;
+    this.onPolygonsCreated = config.onPolygonsCreated;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
-    this.handleRemovePolygon = this.handleRemovePolygon.bind(this);
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
+    this.handleRemovePolygon = this.handleRemovePolygon.bind(this);
     this.addListeners()
   }
   
@@ -32,7 +33,7 @@ class Map {
       strokeWeight: 5,
       strokeColor: '#2DC1D6',
       clickable: false,
-      editable: true,
+      // editable: true,
       zIndex: 1
     }
     return new google.maps.drawing.DrawingManager({
@@ -98,14 +99,12 @@ class Map {
     }
   }
 
-  handleRemovePolygon() {
-    this.polygons.pop().setMap(null);
-
-    // this.polygons.setMap(null);
+  handlePolygonCreated(polygon){
+    this.polygons.push(polygon)
+    this.onPolygonsCreated(this.polygons);
   }
 
-  handlePolygonCreated(polygon){
-    this.polygons.push(polygon);
-    console.log(this.polygons)
+  handleRemovePolygon() {
+    this.polygons.pop().setMap(null);
   }
 }

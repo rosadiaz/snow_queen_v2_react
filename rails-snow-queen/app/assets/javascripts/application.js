@@ -19,9 +19,9 @@
 
 function initMap() {
   const quotingPanel = new QuotingPanel();
-  console.log(quotingPanel.showAddress)
-  const map = new Map({
+  new Map({
     onGeocodingResponse: quotingPanel.showAddress,
+    onPolygonsCreated: quotingPanel.updateTotals,
   });
 }
 
