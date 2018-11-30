@@ -8,6 +8,7 @@ class QuotingPanel {
   showAddress(geocodedAdress) {
     if (geocodedAdress) {
       let addressNode = document.getElementById("displayAddress");
+      while (addressNode.firstChild) { addressNode.removeChild(addressNode.firstChild) }
       let splitAddress = geocodedAdress.split(",");
       splitAddress.forEach(element => {
         let div = document.createElement("div");
