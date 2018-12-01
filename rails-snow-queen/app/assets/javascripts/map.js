@@ -1,3 +1,10 @@
+constants = {
+  // sets up map zoom close enough to see street details
+  ZOOM: 15,
+  // sets loading map centerd in Eagle Ridge area
+  CENTER_MAP_LOCATION: {lat: 49.2860, lng: -122.8130},
+}
+
 class Map {
 	constructor(config) {
     this.map = this.initMap();
@@ -19,8 +26,8 @@ class Map {
   
   initMap() {
     return new google.maps.Map(document.getElementById('map'), {
-      zoom: 14,
-      center: {lat: 49.2860, lng: -122.8130},
+      zoom: constants.ZOOM,
+      center: constants.CENTER_MAP_LOCATION,
       mapTypeId: google.maps.MapTypeId.SATELLITE,
       tilt:0
     });
@@ -70,7 +77,7 @@ class Map {
   addListeners() {
     document.getElementById('AddressSearch').addEventListener('submit', this.handleSearchSubmit);
     this.removeControl.addEventListener('click', this.handleRemovePolygon);
-    this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated)
+    this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
   }
   
   handleSearchSubmit(event) {
@@ -81,7 +88,7 @@ class Map {
 
   geocodeAddress() {
     let address = document.getElementById('address').value;
-    this.geocoder.geocode({'address': address, 'region': "CA"}, this.handleGeocodingResponse);
+    this.geocoder.geocode({'address': address, 'region': 'CA'}, this.handleGeocodingResponse);
   }
 
   handleGeocodingResponse(results, status) {

@@ -10,11 +10,15 @@
       </form>
       <div class="hidden address" id="displayAddress">
       </div>
-      <div class="hidden">
-         <h4 id="calculatedArea" class="m-3 mt-5">Selected area: _______ sq ft</h4>
-         <h3 id="totalDue" class="text-right p-3">Total    $____.__</h3>
-         <button class="btn btn-block btn-warning shadow-lg">Submit request for service</button>
-      </div>
+      <form action="" id="SubmitQuote">
+         <dl class="hidden">
+            <dt class="m-3 mt-5">Selected area: </dt>
+            <dd class="text-right"><span id="calculatedArea"></span> sq ft</dd>
+            <dt class="p-3">Total: </dt>
+            <dd class="text-right">$<span id="totalDue"></span></dd>
+            <input id="quoteSubmit" type="submit" value="Submit request for servide" class="btn btn-block btn-warning shadow-lg">
+         </dl>
+      </form>
    </div>
    <div id="map" class="col-8">
    </div>
