@@ -16,12 +16,21 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+const constants = {
+  // sets up map zoom close enough to see street details
+  ZOOM: 15,
+  // sets loading map centerd in Eagle Ridge area
+  CENTER_MAP_LOCATION: {lat: 49.2860, lng: -122.8130},
+  SQ_FT_CONVERT: 10.764,
+  // price to be defined by Snow Queen
+  PRICE_PER_SQ_FT: 0.15,
+}
 
 function initMap() {
   const quotingPanel = new QuotingPanel();
   new Map({
     onGeocodingResponse: quotingPanel.showAddress,
-    onPolygonsChanged: quotingPanel.updateTotals,
+    onPolygonsCreated: quotingPanel.handlePolygonChanged.bind(quotingPanel),
   });
 }
 

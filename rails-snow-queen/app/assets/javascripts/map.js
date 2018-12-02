@@ -1,10 +1,3 @@
-constants = {
-  // sets up map zoom close enough to see street details
-  ZOOM: 15,
-  // sets loading map centerd in Eagle Ridge area
-  CENTER_MAP_LOCATION: {lat: 49.2860, lng: -122.8130},
-}
-
 class Map {
 	constructor(config) {
     this.map = this.initMap();
@@ -59,7 +52,7 @@ class Map {
   }
   
   initRemoveControl() {
-    const removeControlDiv = document.createElement('div');
+    const removeControlDiv = document.createElement('button');
     removeControlDiv.classList.add("map-btn")
     removeControlDiv.title = 'Click to remove selected area from the map';
     removeControlDiv.innerHTML = 'Remove last';
@@ -76,8 +69,8 @@ class Map {
 
   addListeners() {
     document.getElementById('AddressSearch').addEventListener('submit', this.handleSearchSubmit);
-    this.removeControl.addEventListener('click', this.handleRemovePolygon);
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
+    this.removeControl.addEventListener('click', this.handleRemovePolygon);
   }
   
   handleSearchSubmit(event) {
