@@ -59,7 +59,7 @@ class Map {
   }
   
   initRemoveControl() {
-    const removeControlDiv = document.createElement('div');
+    const removeControlDiv = document.createElement('button');
     removeControlDiv.classList.add("map-btn")
     removeControlDiv.title = 'Click to remove selected area from the map';
     removeControlDiv.innerHTML = 'Remove last';
