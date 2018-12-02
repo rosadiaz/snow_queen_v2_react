@@ -21,7 +21,7 @@ function initMap() {
   const quotingPanel = new QuotingPanel();
   new Map({
     onGeocodingResponse: quotingPanel.showAddress,
-    onPolygonsCreated: quotingPanel.updateTotals,
+    onPolygonsCreated: quotingPanel.handlePolygonChanged,
   });
 }
 

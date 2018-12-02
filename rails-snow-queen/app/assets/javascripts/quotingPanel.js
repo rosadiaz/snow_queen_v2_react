@@ -19,7 +19,7 @@ class QuotingPanel {
     }
   }
 
-  updateTotals(polygons) {
+  handlePolygonChanged(polygons) {
     let SQ_FT_CONVERT = 10.764;
     const PRICE_PER_SQ_FT = 0.15;
 
