@@ -5,6 +5,7 @@ class QuotingPanel {
     this.totalDue = null;
 
     this.handleQuoteSubmit = this.handleQuoteSubmit.bind(this);
+    this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
     this.addListeners();
   }
 
@@ -28,8 +29,7 @@ class QuotingPanel {
 
   handlePolygonChanged (polygons) {
     this.polygons = polygons;
-    let aggregateAreaInMts = this.aggregateAreaInMts();
-    this.totalAreaInSqFt = this.convertToSqFt(aggregateAreaInMts);
+    this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.totalDue = this.calculateTotalDue();
     this.updateAreaNode();
     this.updateTotalDueNode();
