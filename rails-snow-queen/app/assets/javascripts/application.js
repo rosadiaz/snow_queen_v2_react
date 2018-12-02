@@ -10,36 +10,27 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
+//= require popper
+//= require bootstrap
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+const constants = {
+  // sets up map zoom close enough to see street details
+  ZOOM: 15,
+  // sets loading map centerd in Eagle Ridge area
+  CENTER_MAP_LOCATION: {lat: 49.2860, lng: -122.8130},
+  SQ_FT_CONVERT: 10.764,
+  // price to be defined by Snow Queen
+  PRICE_PER_SQ_FT: 0.15,
+}
+
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
-    center: {lat: 49.2860, lng: -122.8130}
-  });
-  var geocoder = new google.maps.Geocoder();
-
-  document.getElementById('submit').addEventListener('click', function() {
-    geocodeAddress(geocoder, map);
+  const quotingPanel = new QuotingPanel();
+  new Map({
+    onGeocodingResponse: quotingPanel.showAddress,
+    onPolygonsCreated: quotingPanel.handlePolygonChanged.bind(quotingPanel),
   });
 }
 
-function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
-  geocoder.geocode({'address': address}, function(results, status) {
-    if (status === 'OK') {
-      resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-      console.log("===========================================")
-      console.log(resultsMap)
-      console.log("===========================================")
-  
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}

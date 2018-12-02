@@ -10,11 +10,51 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+$theme-colors: (
+  "primary":#61D5DD,
+  "warning":#fa7f28,
+  "success":#76B041,
+  "info": #99C5E6,
+  "secondary": #FFC914,
+  "light": #F6F7F7,
+  "dark": #177E89
+);
+
+@import 'bootstrap';
+
+
+header {
+  background-color: rgba(97, 213, 221, 0.452);
+  height: 20vh;
+}
+
 #map {
   width: 100%;
-  height: 400px;
+  height: 80vh;
   background-color: grey;
+}
+
+#panel {
+  background-color: #177E89;
+}
+
+.map-btn {
+  border: 2px solid #fff;
+  border-radius: 3px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+#displayAddress {
+  font-weight: bold;
+  text-shadow: 2px 2px 10px white;
+  
+  > div:first-child {
+    margin-top: 30px;
+  }
 }
