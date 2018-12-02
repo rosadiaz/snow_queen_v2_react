@@ -1,4 +1,4 @@
-constants = {
+const constants = {
   // sets up map zoom close enough to see street details
   ZOOM: 15,
   // sets loading map centerd in Eagle Ridge area
