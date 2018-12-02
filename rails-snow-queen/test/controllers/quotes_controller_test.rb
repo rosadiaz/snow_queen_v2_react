@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class QuoteTest < ActiveSupport::TestCase
+class QuotesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
