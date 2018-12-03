@@ -35,6 +35,17 @@ class Quote {
 
     let totalDueNodeInModalForm = document.getElementById("quote_total");
     totalDueNodeInModalForm.value = quoteData.totalDue;
+
+    let polygonsJSON = {};
+    quoteData.polygons.forEach(p => { 
+      polygonsJSON += JSON.stringify(p.getPath());
+    });
+
+    let polygonsNodeInModalForm = document.getElementById("quote_polygons");
+    polygonsNodeInModalForm.value = polygonsJSON;
+  }
+
+  getPolygonsJSON() {
   }
 
   handleErrors(event) {
