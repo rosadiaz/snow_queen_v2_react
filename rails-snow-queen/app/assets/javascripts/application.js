@@ -28,9 +28,13 @@ const constants = {
 
 function initMap() {
   const quotingPanel = new QuotingPanel();
+
   new Map({
     onGeocodingResponse: quotingPanel.showAddress,
     onPolygonsChanged: quotingPanel.handlePolygonChanged,
   });
-}
 
+  new Quote({
+    onOpen: quotingPanel.getData,
+  });
+}

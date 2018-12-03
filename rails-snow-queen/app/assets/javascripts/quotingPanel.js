@@ -1,20 +1,22 @@
 class QuotingPanel {
   constructor() {
     this.polygons = {};
-    this.geocodedAdress = null;
+    this.geocodedAddress = null;
     this.totalAreaInSqFt = null;
     this.totalDue = null;
 
+    this.showAddress = this.showAddress.bind(this);
     this.handleQuoteSubmit = this.handleQuoteSubmit.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
+    this.getData = this.getData.bind(this);
     this.addListeners();
   }
 
-  showAddress(geocodedAdress) {
-    if (geocodedAdress) {
-      this.geocodedAdress = geocodedAdress;
+  showAddress(geocodedAddress) {
+    if (geocodedAddress) {
+      this.geocodedAddress = geocodedAddress;
       let addressNode = document.getElementById("displayAddress");
-      let splitAddress = geocodedAdress.split(",");
+      let splitAddress = geocodedAddress.split(",");
       while (addressNode.firstChild) { addressNode.removeChild(addressNode.firstChild) }
       splitAddress.forEach(element => {
         let div = document.createElement("div");
@@ -23,11 +25,11 @@ class QuotingPanel {
       });
       addressNode.classList.remove("hidden");
 
-      let addressNodeInModal = document.getElementById("addressModal");
-      addressNodeInModal.innerText = splitAddress;
+      // let addressNodeInModal = document.getElementById("addressModal");
+      // addressNodeInModal.innerText = splitAddress;
 
-      let addressNodeInModalForm = document.getElementById("quote_address");
-      addressNodeInModalForm.value = this.geocodedAdress;
+      // let addressNodeInModalForm = document.getElementById("quote_address");
+      // addressNodeInModalForm.value = this.geocodedAddress;
 
       //add to form address hidden
     }
@@ -63,11 +65,11 @@ class QuotingPanel {
     areaNode.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
     areaNode.parentNode.parentNode.classList.remove("hidden");
     
-    let areaNodeInModal = document.getElementById("areaModal");
-    areaNodeInModal.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
+    // let areaNodeInModal = document.getElementById("areaModal");
+    // areaNodeInModal.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
 
-    let areaNodeInModalForm = document.getElementById("quote_area");
-    areaNodeInModalForm.value = this.totalAreaInSqFt;
+    // let areaNodeInModalForm = document.getElementById("quote_area");
+    // areaNodeInModalForm.value = this.totalAreaInSqFt;
 
     //add to form hidden
   }
@@ -76,11 +78,11 @@ class QuotingPanel {
     let totalDueNode = document.getElementById("totalDue");
     totalDueNode.innerText = `${this.totalDue.toFixed(2)}`;
 
-    let totalDueNodeInModal = document.getElementById("totalModal");
-    totalDueNodeInModal.innerText = `${this.totalDue.toFixed(2)}`;
+    // let totalDueNodeInModal = document.getElementById("totalModal");
+    // totalDueNodeInModal.innerText = `${this.totalDue.toFixed(2)}`;
 
-    let totalDueNodeInModalForm = document.getElementById("quote_total");
-    totalDueNodeInModalForm.value = this.totalDue;
+    // let totalDueNodeInModalForm = document.getElementById("quote_total");
+    // totalDueNodeInModalForm.value = this.totalDue;
   }
 
   addListeners() {
@@ -89,6 +91,15 @@ class QuotingPanel {
 
   handleQuoteSubmit(event) {
     event.preventDefault();
+  }
+
+  getData() {
+    return {
+      polygons: this.polygons,
+      geocodedAddress: this.geocodedAddress || "",
+      totalAreaInSqFt: this.totalAreaInSqFt, 
+      totalDue: this.totalDue,
+    }
   }
 }
 

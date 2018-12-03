@@ -6,9 +6,9 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new quote_params
     if @quote.save
-      redirect_to new_quote_path
+      render json: {}, status: :ok
     else
-      render :new
+      render json: { errors: @quote.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

@@ -35,11 +35,12 @@
                      <span aria-hidden="true">&times;</span>
                   </button>
                </div>
-               <div class="modal-body">
-                  <p>Address: <span id="addressModal"></span> </p>
-                  <p>Area: <span id="areaModal"></span> sq ft</p>
-                  <p>Total: $<span id="totalModal"></span> </p>
-                  <%= simple_form_for(@quote, html: { novalidate: true }) do |form| %>
+               <%= simple_form_for(@quote, remote: true) do |form| %>
+                  <div class="modal-body">
+                     <p>Address: <span id="addressModal"></span> </p>
+                     <p>Area: <span id="areaModal"></span> sq ft</p>
+                     <p>Total: $<span id="totalModal"></span> </p>
+                     <div class="hidden" id="modal_errors"></div>
                      <%= form.input :email, label: "Email"%>
                      <%= form.input :first_name, label: "First name" %>
                      <%= form.input :last_name, label: "Last name"%>
@@ -52,7 +53,7 @@
                      <button type="button" class="btn btn-warning" data-dismiss="modal">Make changes</button>
                      <%= form.submit "Submit quote", class: 'btn btn-primary' %>
                   </div>
-                  <% end %>
+               <% end %>
             </div>
          </div>
       </div>
