@@ -22,7 +22,6 @@ class QuotingPanel {
 
       const addressNodeInModal = document.getElementById("addressModal");
       addressNodeInModal.innerText = splitAddress;
-
     }
   }
 
@@ -53,19 +52,19 @@ class QuotingPanel {
 
   updateAreaNode() {
     const areaNode = document.getElementById("calculatedArea");
-    areaNode.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
+    areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
     areaNode.parentNode.parentNode.classList.remove("hidden");
     
     const areaNodeInModal = document.getElementById("areaModal");
-    areaNodeInModal.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
+    areaNodeInModal.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
   }
 
   updateTotalDueNode() {
     const totalDueNode = document.getElementById("totalDue");
-    totalDueNode.innerText = `${this.totalDue.toFixed(2)}`;
+    totalDueNode.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
 
     const totalDueNodeInModal = document.getElementById("totalModal");
-    totalDueNodeInModal.innerText = `${this.totalDue.toFixed(2)}`;
+    totalDueNodeInModal.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
   }
 
   addListeners() {
@@ -73,5 +72,4 @@ class QuotingPanel {
   }
 
 }
-
 
