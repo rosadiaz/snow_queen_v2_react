@@ -68,6 +68,7 @@ class Map {
   }
 
   addListeners() {
+    document.addEventListener("DOMContentLoaded", $('#addressSubmitModal').modal("show"));
     document.getElementById('AddressSearch').addEventListener('submit', this.handleSearchSubmit);
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
     this.removeControl.addEventListener('click', this.handleRemovePolygon);
@@ -75,6 +76,7 @@ class Map {
   
   handleSearchSubmit(event) {
     event.preventDefault();
+    $('#addressSubmitModal').modal("hide")
     if (this.marker) { this.marker.setMap(null) }
     this.geocodeAddress();
   }
