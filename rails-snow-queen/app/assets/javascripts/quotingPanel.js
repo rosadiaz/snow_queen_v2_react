@@ -70,12 +70,9 @@ class QuotingPanel {
   }
 
   addListeners() {
-    document.getElementById('SubmitQuote').addEventListener('submit', this.handleQuoteSubmit);
+    document.getElementById('SubmitQuote').addEventListener('submit', (event) => { event.preventDefault() });
   }
 
-  handleQuoteSubmit(event) {
-    event.preventDefault();
-  }
 }
 
 
