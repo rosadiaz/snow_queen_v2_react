@@ -24,14 +24,6 @@ class QuotingPanel {
         addressNode.appendChild(div);
       });
       addressNode.classList.remove("hidden");
-
-      // let addressNodeInModal = document.getElementById("addressModal");
-      // addressNodeInModal.innerText = splitAddress;
-
-      // let addressNodeInModalForm = document.getElementById("quote_address");
-      // addressNodeInModalForm.value = this.geocodedAddress;
-
-      //add to form address hidden
     }
   }
 
@@ -64,25 +56,11 @@ class QuotingPanel {
     let areaNode = document.getElementById("calculatedArea");
     areaNode.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
     areaNode.parentNode.parentNode.classList.remove("hidden");
-    
-    // let areaNodeInModal = document.getElementById("areaModal");
-    // areaNodeInModal.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
-
-    // let areaNodeInModalForm = document.getElementById("quote_area");
-    // areaNodeInModalForm.value = this.totalAreaInSqFt;
-
-    //add to form hidden
   }
 
   updateTotalDueNode() {
     let totalDueNode = document.getElementById("totalDue");
     totalDueNode.innerText = `${this.totalDue.toFixed(2)}`;
-
-    // let totalDueNodeInModal = document.getElementById("totalModal");
-    // totalDueNodeInModal.innerText = `${this.totalDue.toFixed(2)}`;
-
-    // let totalDueNodeInModalForm = document.getElementById("quote_total");
-    // totalDueNodeInModalForm.value = this.totalDue;
   }
 
   addListeners() {
