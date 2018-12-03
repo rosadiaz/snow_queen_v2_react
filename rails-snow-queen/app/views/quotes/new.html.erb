@@ -19,7 +19,7 @@
             <input 
                id="quoteSubmit" 
                type="submit" 
-               value="Submit request for service" 
+               value="Send me this quote" 
                class="btn btn-block btn-warning shadow-lg"
                data-toggle="modal" 
                data-target="#submitQuoteModal"
@@ -50,7 +50,7 @@
                      <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'}%>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-warning" data-dismiss="modal">Make changes</button>
+                     <button type="button" class="btn btn-warning" data-dismiss="modal">Don't send! Go back to make changes</button>
                      <%= form.submit "Submit quote", class: 'btn btn-primary' %>
                   </div>
                <% end %>

@@ -6,7 +6,6 @@ class QuotingPanel {
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
-    this.handleQuoteSubmit = this.handleQuoteSubmit.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
     this.getData = this.getData.bind(this);
     this.addListeners();
@@ -15,15 +14,18 @@ class QuotingPanel {
   showAddress(geocodedAddress) {
     if (geocodedAddress) {
       this.geocodedAddress = geocodedAddress;
-      let addressNode = document.getElementById("displayAddress");
+      const addressNode = document.getElementById("displayAddress");
       let splitAddress = geocodedAddress.split(",");
       while (addressNode.firstChild) { addressNode.removeChild(addressNode.firstChild) }
       splitAddress.forEach(element => {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.innerText = element;
         addressNode.appendChild(div);
       });
       addressNode.classList.remove("hidden");
+
+      const addressNodeInModal = document.getElementById("addressModal");
+      addressNodeInModal.innerText = splitAddress;
     }
   }
 
@@ -53,22 +55,26 @@ class QuotingPanel {
   }
 
   updateAreaNode() {
-    let areaNode = document.getElementById("calculatedArea");
-    areaNode.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
+    const areaNode = document.getElementById("calculatedArea");
+    areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
     areaNode.parentNode.parentNode.classList.remove("hidden");
   }
 
   updateTotalDueNode() {
-    let totalDueNode = document.getElementById("totalDue");
-    totalDueNode.innerText = `${this.totalDue.toFixed(2)}`;
+    const areaNodeInModal = document.getElementById("areaModal");
+    areaNodeInModal.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+  }
+
+  updateTotalDueNode() {
+    const totalDueNode = document.getElementById("totalDue");
+    totalDueNode.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+
+    const totalDueNodeInModal = document.getElementById("totalModal");
+    totalDueNodeInModal.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
   }
 
   addListeners() {
-    document.getElementById('SubmitQuote').addEventListener('submit', this.handleQuoteSubmit);
-  }
-
-  handleQuoteSubmit(event) {
-    event.preventDefault();
+    document.getElementById('SubmitQuote').addEventListener('submit', (event) => { event.preventDefault() });
   }
 
   getData() {
@@ -80,5 +86,4 @@ class QuotingPanel {
     }
   }
 }
-
 
