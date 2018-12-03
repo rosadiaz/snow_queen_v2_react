@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_12_01_233429) do
   create_table "quotes", force: :cascade do |t|
     t.string "address"
     t.float "area"
-    t.decimal "total"
+    t.float "total"
     t.string "email"
     t.text "comments"
     t.string "first_name"

@@ -1,6 +1,7 @@
 class QuotingPanel {
   constructor() {
     this.polygons = {};
+    this.geocodedAdress = null;
     this.totalAreaInSqFt = null;
     this.totalDue = null;
 
@@ -11,6 +12,7 @@ class QuotingPanel {
 
   showAddress(geocodedAdress) {
     if (geocodedAdress) {
+      this.geocodedAdress = geocodedAdress;
       let addressNode = document.getElementById("displayAddress");
       let splitAddress = geocodedAdress.split(",");
       while (addressNode.firstChild) { addressNode.removeChild(addressNode.firstChild) }
@@ -24,6 +26,10 @@ class QuotingPanel {
       let addressNodeInModal = document.getElementById("addressModal");
       addressNodeInModal.innerText = splitAddress;
 
+      let addressNodeInModalForm = document.getElementById("quote_address");
+      addressNodeInModalForm.value = this.geocodedAdress;
+
+      //add to form address hidden
     }
   }
 
@@ -59,6 +65,11 @@ class QuotingPanel {
     
     let areaNodeInModal = document.getElementById("areaModal");
     areaNodeInModal.innerText = `${this.totalAreaInSqFt.toFixed(0)}`;
+
+    let areaNodeInModalForm = document.getElementById("quote_area");
+    areaNodeInModalForm.value = this.totalAreaInSqFt;
+
+    //add to form hidden
   }
 
   updateTotalDueNode() {
@@ -67,6 +78,9 @@ class QuotingPanel {
 
     let totalDueNodeInModal = document.getElementById("totalModal");
     totalDueNodeInModal.innerText = `${this.totalDue.toFixed(2)}`;
+
+    let totalDueNodeInModalForm = document.getElementById("quote_total");
+    totalDueNodeInModalForm.value = this.totalDue;
   }
 
   addListeners() {

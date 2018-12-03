@@ -39,17 +39,20 @@
                   <p>Address: <span id="addressModal"></span> </p>
                   <p>Area: <span id="areaModal"></span> sq ft</p>
                   <p>Total: $<span id="totalModal"></span> </p>
-                  <%= simple_form_for (@quote) do |form| %>
+                  <%= simple_form_for(@quote, html: { novalidate: true }) do |form| %>
                      <%= form.input :email, label: "Email"%>
                      <%= form.input :first_name, label: "First name" %>
                      <%= form.input :last_name, label: "Last name"%>
-                     <%= form.input :comments, input_html: { placeholder: 'Anything else we should know?'}, required: false %>
+                     <%= form.input :address, :as => :hidden%>
+                     <%= form.input :area, :as => :hidden%>
+                     <%= form.input :total, :as => :hidden%>
+                     <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'}%>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-warning" data-dismiss="modal">Make changes</button>
+                     <%= form.submit "Submit quote", class: 'btn btn-primary' %>
+                  </div>
                   <% end %>
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-warning" data-dismiss="modal">Make changes</button>
-                  <button type="button" class="btn btn-primary">Submit quote</button>
-               </div>
             </div>
          </div>
       </div>

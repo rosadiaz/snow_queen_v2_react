@@ -3,7 +3,7 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
     create_table :quotes do |t|
       t.string :address
       t.float :area
-      t.decimal :total
+      t.float :total
       t.string :email
       t.text :comments
       t.string :first_name
