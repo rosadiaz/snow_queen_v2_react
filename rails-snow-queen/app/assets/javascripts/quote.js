@@ -21,17 +21,17 @@ class Quote {
     let addressNodeInModal = document.getElementById("addressModal");
     addressNodeInModal.innerText = splitAddress;
 
-    let addressNodeInModalForm = document.getElementById("quote_address");
-    addressNodeInModalForm.value = quoteData.geocodedAddress;
-
     let areaNodeInModal = document.getElementById("areaModal");
     areaNodeInModal.innerText = `${quoteData.totalAreaInSqFt.toFixed(0)}`;
-
-    let areaNodeInModalForm = document.getElementById("quote_area");
-    areaNodeInModalForm.value = quoteData.totalAreaInSqFt;
-
+    
     let totalDueNodeInModal = document.getElementById("totalModal");
     totalDueNodeInModal.innerText = `${quoteData.totalDue.toFixed(2)}`;
+    
+    let addressNodeInModalForm = document.getElementById("quote_address");
+    addressNodeInModalForm.value = quoteData.geocodedAddress;
+    
+    let areaNodeInModalForm = document.getElementById("quote_area");
+    areaNodeInModalForm.value = quoteData.totalAreaInSqFt;
 
     let totalDueNodeInModalForm = document.getElementById("quote_total");
     totalDueNodeInModalForm.value = quoteData.totalDue;
