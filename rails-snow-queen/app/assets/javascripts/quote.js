@@ -37,11 +37,6 @@ class Quote {
     let totalDueNodeInModalForm = document.getElementById("quote_total");
     totalDueNodeInModalForm.value = quoteData.totalDue;
 
-    // let polygonsLatLngs = quoteData.polygons.map(p => { 
-    //   return p.getPath().getArray().map(vertex => { return vertex.toJSON() })
-    // });
-    // console.log("JSON.stringify(polygonsLatLngs): ", JSON.stringify(polygonsLatLngs));
-
     let polygonsNodeInModalForm = document.getElementById("quote_polygons");
     polygonsNodeInModalForm.value = polygonsLatLngs;
   }
@@ -50,7 +45,6 @@ class Quote {
     let polygonsLatLngs = polygons.map(p => { 
       return p.getPath().getArray().map(vertex => { return vertex.toJSON() })
     });
-    console.log("JSON.stringify(polygonsLatLngs): ", JSON.stringify(polygonsLatLngs));
     return JSON.stringify(polygonsLatLngs);
   }
 

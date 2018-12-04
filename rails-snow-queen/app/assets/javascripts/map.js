@@ -104,7 +104,6 @@ class Map {
 
   handlePolygonCreated(polygon){
     this.polygons.push(polygon)
-    //turn polygon to lat long JSON array [{lat: xxxx, long: yyy}, {lat: xxxx, long: yyy}, ... ]
     this.onPolygonsChanged(this.polygons);
   }
 
