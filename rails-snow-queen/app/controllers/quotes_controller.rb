@@ -6,6 +6,7 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new quote_params
     if @quote.save
+      #mandar mailer 
       render json: {}, status: :ok
     else
       render json: { errors: @quote.errors.full_messages}, status: :unprocessable_entity

@@ -7,6 +7,7 @@ class Map {
     this.marker = null;
     this.geocodedAddress = null;
     this.polygons = [];
+    this.polygonsJSON = null;
     this.onGeocodingResponse = config.onGeocodingResponse;
     this.onPolygonsChanged = config.onPolygonsChanged;
 
@@ -103,6 +104,7 @@ class Map {
 
   handlePolygonCreated(polygon){
     this.polygons.push(polygon)
+    //turn polygon to lat long JSON array [{lat: xxxx, long: yyy}, {lat: xxxx, long: yyy}, ... ]
     this.onPolygonsChanged(this.polygons);
   }
 

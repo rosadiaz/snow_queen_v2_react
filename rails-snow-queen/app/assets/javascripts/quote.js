@@ -16,6 +16,7 @@ class Quote {
 
   handleOpenModal() {
     let quoteData = this.onOpen();
+    let polygonsLatLngs = this.getPolygonsJSON(quoteData.polygons);
 
     let splitAddress = quoteData.geocodedAddress.split(",");
     let addressNodeInModal = document.getElementById("addressModal");
@@ -36,16 +37,21 @@ class Quote {
     let totalDueNodeInModalForm = document.getElementById("quote_total");
     totalDueNodeInModalForm.value = quoteData.totalDue;
 
-    let polygonsJSON = {};
-    quoteData.polygons.forEach(p => { 
-      polygonsJSON += JSON.stringify(p.getPath());
-    });
+    // let polygonsLatLngs = quoteData.polygons.map(p => { 
+    //   return p.getPath().getArray().map(vertex => { return vertex.toJSON() })
+    // });
+    // console.log("JSON.stringify(polygonsLatLngs): ", JSON.stringify(polygonsLatLngs));
 
     let polygonsNodeInModalForm = document.getElementById("quote_polygons");
-    polygonsNodeInModalForm.value = polygonsJSON;
+    polygonsNodeInModalForm.value = polygonsLatLngs;
   }
 
-  getPolygonsJSON() {
+  getPolygonsJSON(polygons){
+    let polygonsLatLngs = polygons.map(p => { 
+      return p.getPath().getArray().map(vertex => { return vertex.toJSON() })
+    });
+    console.log("JSON.stringify(polygonsLatLngs): ", JSON.stringify(polygonsLatLngs));
+    return JSON.stringify(polygonsLatLngs);
   }
 
   handleErrors(event) {
@@ -57,7 +63,7 @@ class Quote {
 
   handleSuccess(event) {
     $("#submitQuoteModal").modal("hide");
-    
+    //window. refresh or reload when thank you modal closes
   }
 }
 
