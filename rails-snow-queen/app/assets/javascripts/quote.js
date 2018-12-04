@@ -11,7 +11,6 @@ class Quote {
   addListeners() {
     $("#submitQuoteModal").on("show.bs.modal", this.handleOpenModal);
     document.getElementById("new_quote").addEventListener("ajax:error", this.handleErrors);
-    document.getElementById("new_quote").addEventListener("ajax:success", this.handleSuccess);
   }
 
   handleOpenModal() {
