@@ -30,7 +30,7 @@ function initMap() {
   const quotingPanel = new QuotingPanel();
   new Map({
     onGeocodingResponse: quotingPanel.showAddress,
-    onPolygonsCreated: quotingPanel.handlePolygonChanged.bind(quotingPanel),
+    onPolygonsChanged: quotingPanel.handlePolygonChanged,
   });
 }
 

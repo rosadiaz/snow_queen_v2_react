@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :quotes, only: [:new] 
+  root 'quotes#new'
+  resources :quotes, only: [:new, :create] 
 end

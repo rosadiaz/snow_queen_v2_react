@@ -8,7 +8,7 @@ class Map {
     this.geocodedAddress = null;
     this.polygons = [];
     this.onGeocodingResponse = config.onGeocodingResponse;
-    this.onPolygonsCreated = config.onPolygonsCreated;
+    this.onPolygonsChanged = config.onPolygonsChanged;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
@@ -101,10 +101,11 @@ class Map {
 
   handlePolygonCreated(polygon){
     this.polygons.push(polygon)
-    this.onPolygonsCreated(this.polygons);
+    this.onPolygonsChanged(this.polygons);
   }
 
   handleRemovePolygon() {
     this.polygons.pop().setMap(null);
+    this.onPolygonsChanged(this.polygons)
   }
 }
