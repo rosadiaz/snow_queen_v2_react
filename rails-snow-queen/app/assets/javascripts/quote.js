@@ -11,6 +11,8 @@ class Quote {
   addListeners() {
     $("#submitQuoteModal").on("show.bs.modal", this.handleOpenModal);
     document.getElementById("new_quote").addEventListener("ajax:error", this.handleErrors);
+    document.getElementById("new_quote").addEventListener("ajax:success", () => { $("#submitQuoteModal").modal("hide") });
+    $("#successModal").on("hide.bs.modal", () => { location.reload() });
   }
 
   handleOpenModal() {
@@ -54,9 +56,5 @@ class Quote {
     errorNode.innerText = this.errors.join(", ");
   }
 
-  handleSuccess(event) {
-    $("#submitQuoteModal").modal("hide");
-    //window. refresh or reload when thank you modal closes
-  }
 }
 
