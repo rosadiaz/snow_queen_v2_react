@@ -56,7 +56,8 @@ class Quote {
   }
 
   handleSuccess(event) {
-    //abrir thank you modal
+    $("#submitQuoteModal").modal("hide");
+    
   }
 }
 

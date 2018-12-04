@@ -23,6 +23,7 @@ class QuotingPanel {
         addressNode.appendChild(div);
       });
       addressNode.classList.remove("hidden");
+      document.getElementById("searchAddressButton").classList.remove("hidden");
 
       const addressNodeInModal = document.getElementById("addressModal");
       addressNodeInModal.innerText = splitAddress;

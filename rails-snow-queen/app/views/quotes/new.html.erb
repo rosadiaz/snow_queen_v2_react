@@ -23,6 +23,9 @@
 
       <div class="hidden address" id="displayAddress">
       </div>
+      <button type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#addressSubmitModal" id="searchAddressButton">
+         Change address
+      </button>
       <form action="" id="SubmitQuote">
          <dl class="hidden">
             <dt class="m-3 mt-5">Selected area: </dt>
@@ -65,13 +68,35 @@
                      <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'}%>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-warning" data-dismiss="modal">Don't send! Go back to make changes</button>
-                     <%= form.submit "Submit quote", class: 'btn btn-primary' %>
+                     <button type="button" class="btn btn-warning" data-dismiss="modal">Not yet! I need to make changes</button>
+                     <%= form.submit "Submit quote", class: 'btn btn-primary', data: {toggle: 'modal', target: '#successModal'} %>
                   </div>
                <% end %>
             </div>
          </div>
       </div>
+
+      <!-- SUCCESS MODAL -->
+      <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">THANK YOU!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+               <p>You will shortly receive an email with the details for the service requested.</p>
+               <p>Snow Queen will be in touch with you in the next 24hrs.</p> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">See you soon!</button>
+            </div>
+         </div>
+      </div>
+      </div>
+
    </div>
    <div id="map" class="col-8">
    </div>
