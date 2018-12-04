@@ -1,0 +1,20 @@
+<h1>Snow Queen service request #<%= @quote.id %></h1>
+
+<h2>Hi <%= @quote.first_name %></h1>
+
+<p>
+  Thank you for choosing Snow Queen to fulfill your winter snow clearing and salting needs! <br>
+  For your reference, here are the details of the service you requested on <%= @quote.created_at %>:
+</p>
+<dl>
+  <dt>Address:</dt>
+  <dd><%= @quote.address %></dd>
+  <dt>Area to be serviced:</dt>
+  <dd><%= @quote.area.toFixed(0) %>sq ft</dd>
+  <dt>Comments:</dt>
+  <dd><%= @quote.comments %></dd>
+  <dt>Total due:</dt>
+  <dd>$<%= @quote.total.toFixed(2) %></dd>
+</dl>
+
+<p>Cheers, <br> Snow Queen Team</p>
