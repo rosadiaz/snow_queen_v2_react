@@ -36,9 +36,9 @@
                   </button>
                </div>
                <div class="modal-body">
-                  <p>Address: <span id="addressModal"></span> </p>
-                  <p>Area: <span id="areaModal"></span> sq ft</p>
-                  <p>Total: $<span id="totalModal"></span> </p>
+                  <dl>Address: <span id="addressModal"></span> </dl>
+                  <dl>Area: <span id="areaModal"></span> sq ft</dl>
+                  <dl>Total: $<span id="totalModal"></span> </dl>
                   <%= simple_form_for (@quote) do |form| %>
                      <%= form.input :email, label: "Email"%>
                      <%= form.input :first_name, label: "First name" %>
