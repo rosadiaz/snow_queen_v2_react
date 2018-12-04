@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_191218) do
+ActiveRecord::Schema.define(version: 2018_12_04_185121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_12_03_191218) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "polygons"
+    t.index ["email"], name: "index_quotes_on_email"
   end
 
 end

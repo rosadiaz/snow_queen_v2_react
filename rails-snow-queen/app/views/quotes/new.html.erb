@@ -54,9 +54,9 @@
                </div>
                <%= simple_form_for(@quote, remote: true) do |form| %>
                   <div class="modal-body">
-                     <p>Address: <span id="addressModal"></span> </p>
-                     <p>Area: <span id="areaModal"></span> sq ft</p>
-                     <p>Total: $<span id="totalModal"></span> </p>
+                     <dl>Address: <span id="addressModal"></span> </dl>
+                     <dl>Area: <span id="areaModal"></span> sq ft</dl>
+                     <dl>Total: $<span id="totalModal"></span> </dl>
                      <div class="hidden" id="modal_errors"></div>
                      <%= form.input :email, label: "Email"%>
                      <%= form.input :first_name, label: "First name" %>
