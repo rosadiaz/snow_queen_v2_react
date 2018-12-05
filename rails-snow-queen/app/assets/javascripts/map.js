@@ -1,5 +1,5 @@
 class Map {
-	constructor(config) {
+  constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
     this.removeControl = this.initRemoveControl();
@@ -14,7 +14,8 @@ class Map {
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
     this.handleRemovePolygon = this.handleRemovePolygon.bind(this);
-    this.addListeners()
+    this.addListeners();
+    this.showAddressModal();
   }
   
   initMap() {
@@ -68,13 +69,18 @@ class Map {
   }
 
   addListeners() {
-    document.getElementById('AddressSearch').addEventListener('submit', this.handleSearchSubmit);
+    document.getElementById('AddressSearchModal').addEventListener('submit', this.handleSearchSubmit);
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
     this.removeControl.addEventListener('click', this.handleRemovePolygon);
+  }
+
+  showAddressModal(){
+    $('#addressSubmitModal').modal("show");
   }
   
   handleSearchSubmit(event) {
     event.preventDefault();
+    $('#addressSubmitModal').modal("hide")
     if (this.marker) { this.marker.setMap(null) }
     this.geocodeAddress();
   }

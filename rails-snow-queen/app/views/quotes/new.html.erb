@@ -3,15 +3,31 @@
       <h1>Quote calculator</h1>
       <p>Get a free quote for a salting or snow clearing service</p>
 
-      <form action="" id="AddressSearch">
-         <label for="address">Search your location:</label><br>
-         <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" size="40">
-         <input id="submit" type="submit" value="Find" class="btn btn-light btn-sm">
-      </form>
+      <!-- ADDRESS SEARCH MODAL -->
+      <div class="modal fade" id="addressSubmitModal" tabindex="-1" role="dialog" aria-labelledby="addressSubmitModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="addressSubmitModalLabel">Let's start looking for your address:</h5>
+               </div>
+               <form action="" id="AddressSearchModal">
+                  <div class="modal-body">
+                     <input id="address" type="text" placeholder="123 Street Rd, Port Moody" size="40">
+                     <input id="submit" type="submit" value="Find" class="btn btn-primary ">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
+
       <div class="hidden address" id="displayAddress">
       </div>
+      <button type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#addressSubmitModal" id="searchAddressButton">
+         Change address
+      </button>
       <form action="" id="SubmitQuote">
-         <dl class="hidden">
+         <dl class="hidden" id="displayTotals">
             <dt class="m-3 mt-5">Selected area: </dt>
             <dd class="text-right"><span id="calculatedArea"></span> sq ft</dd>
             <dt class="p-3">Total: </dt>
@@ -26,6 +42,7 @@
             >
          </dl>
       </form>
+      <!-- QUOTE MODAL -->
       <div class="modal fade" id="submitQuoteModal" tabindex="-1" role="dialog" aria-labelledby="submitQuoteModalTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -35,24 +52,51 @@
                      <span aria-hidden="true">&times;</span>
                   </button>
                </div>
-               <div class="modal-body">
-                  <dl>Address: <span id="addressModal"></span> </dl>
-                  <dl>Area: <span id="areaModal"></span> sq ft</dl>
-                  <dl>Total: $<span id="totalModal"></span> </dl>
-                  <%= simple_form_for (@quote) do |form| %>
-                     <%= form.input :email, label: "Email"%>
+               <%= simple_form_for(@quote, remote: true) do |form| %>
+                  <div class="modal-body">
+                     <dl>Address: <span id="addressModal"></span> </dl>
+                     <dl>Area: <span id="areaModal"></span> sq ft</dl>
+                     <dl>Total: $<span id="totalModal"></span> </dl>
+                     <div class="hidden modal_errors" id="modal_errors"></div>
+                     <%= form.input :email, label: "Email" %>
                      <%= form.input :first_name, label: "First name" %>
-                     <%= form.input :last_name, label: "Last name"%>
-                     <%= form.input :comments, input_html: { placeholder: 'Anything else we should know?'}, required: false %>
-                  <% end %>
+                     <%= form.input :last_name, label: "Last name" %>
+                     <%= form.input :address, :as => :hidden %>
+                     <%= form.input :area, :as => :hidden %>
+                     <%= form.input :total, :as => :hidden %>
+                     <%= form.input :polygons, :as => :hidden %>
+                     <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'} %>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-warning" data-dismiss="modal">Not yet! I need to make changes</button>
+                     <%= form.submit "Submit quote", class: 'btn btn-primary' %>
+                  </div>
+               <% end %>
+            </div>
+         </div>
+      </div>
+
+      <!-- SUCCESS MODAL -->
+      <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="modalTitle">THANK YOU!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <p>You will shortly receive an email with the details for the service requested.</p>
+                  <p>Snow Queen will be in touch with you in the next 24hrs.</p> 
                </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-warning" data-dismiss="modal">Don't send! Go back to make changes</button>
-                  <button type="button" class="btn btn-primary">Request service</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">See you soon!</button>
                </div>
             </div>
          </div>
       </div>
+
    </div>
    <div id="map" class="col-8">
    </div>

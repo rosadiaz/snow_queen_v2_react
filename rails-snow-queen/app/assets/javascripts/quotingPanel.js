@@ -1,17 +1,21 @@
 class QuotingPanel {
   constructor() {
     this.polygons = {};
+    this.geocodedAddress = null;
     this.totalAreaInSqFt = null;
     this.totalDue = null;
 
+    this.showAddress = this.showAddress.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
+    this.getData = this.getData.bind(this);
     this.addListeners();
   }
 
-  showAddress(geocodedAdress) {
-    if (geocodedAdress) {
+  showAddress(geocodedAddress) {
+    if (geocodedAddress) {
+      this.geocodedAddress = geocodedAddress;
       const addressNode = document.getElementById("displayAddress");
-      let splitAddress = geocodedAdress.split(",");
+      let splitAddress = geocodedAddress.split(",");
       while (addressNode.firstChild) { addressNode.removeChild(addressNode.firstChild) }
       splitAddress.forEach(element => {
         const div = document.createElement("div");
@@ -19,6 +23,7 @@ class QuotingPanel {
         addressNode.appendChild(div);
       });
       addressNode.classList.remove("hidden");
+      document.getElementById("searchAddressButton").classList.remove("hidden");
 
       const addressNodeInModal = document.getElementById("addressModal");
       addressNodeInModal.innerText = splitAddress;
@@ -31,6 +36,7 @@ class QuotingPanel {
     this.totalDue = this.calculateTotalDue();
     this.updateAreaNode();
     this.updateTotalDueNode();
+    this.showTotalsNode();
   }
   
   aggregateAreaInMts() {
@@ -50,11 +56,16 @@ class QuotingPanel {
     return this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
   }
 
+  showTotalsNode() {
+    document.getElementById("displayTotals").classList.remove("hidden");
+  }
+  
   updateAreaNode() {
     const areaNode = document.getElementById("calculatedArea");
     areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-    areaNode.parentNode.parentNode.classList.remove("hidden");
-    
+  }
+
+  updateTotalDueNode() {
     const areaNodeInModal = document.getElementById("areaModal");
     areaNodeInModal.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
   }
@@ -68,8 +79,21 @@ class QuotingPanel {
   }
 
   addListeners() {
-    document.getElementById('SubmitQuote').addEventListener('submit', (event) => { event.preventDefault() });
+    document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
+    document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
   }
 
+  getData() {
+    return {
+      polygons: this.polygons,
+      geocodedAddress: this.geocodedAddress || "",
+      totalAreaInSqFt: this.totalAreaInSqFt, 
+      totalDue: this.totalDue,
+    }
+  }
+
+  handleSearchAddressClick() {
+    $("#submitQuoteModal").modal("show");
+  }
 }
 
