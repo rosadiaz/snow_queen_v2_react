@@ -13,7 +13,7 @@ class Quote {
     const quoteFormNode = document.getElementById("new_quote");
     quoteFormNode.addEventListener("ajax:error", this.handleErrors);
     quoteFormNode.addEventListener("ajax:success", this.handleSuccess);
-    $("#successModal").on("hide.bs.modal", this.handleReload)
+    $("#successModal").on("hide.bs.modal", this.handleSuccessModalClose)
   }
 
   handleOpenModal() {
@@ -62,7 +62,7 @@ class Quote {
     $("#successModal").modal("show");
   }
 
-  handleReload() {
+  handleSuccessModalClose() {
     location.reload();
   }
 }

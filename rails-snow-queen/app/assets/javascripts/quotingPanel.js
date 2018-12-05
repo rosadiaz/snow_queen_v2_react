@@ -80,7 +80,7 @@ class QuotingPanel {
 
   addListeners() {
     document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
-    document.getElementById("searchAddressButton").addEventListener('click', this.handleOpenQuoteSubmission);
+    document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
   }
 
   getData() {
@@ -92,7 +92,7 @@ class QuotingPanel {
     }
   }
 
-  handleOpenQuoteSubmission() {
+  handleSearchAddressClick() {
     $("#submitQuoteModal").modal("show");
   }
 }
