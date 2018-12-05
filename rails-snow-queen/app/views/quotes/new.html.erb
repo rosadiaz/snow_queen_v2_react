@@ -12,7 +12,7 @@
                </div>
                <form action="" id="AddressSearchModal">
                   <div class="modal-body">
-                     <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" size="40">
+                     <input id="address" type="text" placeholder="123 Street Rd, Port Moody" size="40">
                      <input id="submit" type="submit" value="Find" class="btn btn-primary ">
                   </div>
                </form>
@@ -57,7 +57,7 @@
                      <dl>Address: <span id="addressModal"></span> </dl>
                      <dl>Area: <span id="areaModal"></span> sq ft</dl>
                      <dl>Total: $<span id="totalModal"></span> </dl>
-                     <div class="hidden" id="modal_errors" class="modal_errors"></div>
+                     <div class="hidden modal_errors" id="modal_errors"></div>
                      <%= form.input :email, label: "Email" %>
                      <%= form.input :first_name, label: "First name" %>
                      <%= form.input :last_name, label: "Last name" %>

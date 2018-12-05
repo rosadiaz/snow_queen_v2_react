@@ -79,7 +79,8 @@ class QuotingPanel {
   }
 
   addListeners() {
-    document.getElementById('SubmitQuote').addEventListener('submit', (event) => { event.preventDefault() });
+    document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
+    document.getElementById("searchAddressButton").addEventListener('click', this.handleOpenQuoteSubmission);
   }
 
   getData() {
@@ -89,6 +90,10 @@ class QuotingPanel {
       totalAreaInSqFt: this.totalAreaInSqFt, 
       totalDue: this.totalDue,
     }
+  }
+
+  handleOpenQuoteSubmission() {
+    $("#submitQuoteModal").modal("show");
   }
 }
 

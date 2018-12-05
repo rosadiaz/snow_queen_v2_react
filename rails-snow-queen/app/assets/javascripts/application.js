@@ -16,6 +16,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+
 const constants = {
   // sets up map zoom close enough to see street details
   ZOOM: 15,
@@ -27,13 +28,19 @@ const constants = {
 }
 
 function initMap() {
-  const quotingPanel = new QuotingPanel();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadApp);
+  } else {
+    loadApp();
+  }
+}
 
+function loadApp() {
+  const quotingPanel = new QuotingPanel();
   new Map({
     onGeocodingResponse: quotingPanel.showAddress,
     onPolygonsChanged: quotingPanel.handlePolygonChanged,
   });
-
   new Quote({
     onOpen: quotingPanel.getData,
   });
