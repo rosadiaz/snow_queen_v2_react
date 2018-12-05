@@ -14,6 +14,9 @@ class Quote {
     const quoteFormNode = document.getElementById("new_quote");
     quoteFormNode.addEventListener("ajax:error", this.handleErrors);
     quoteFormNode.addEventListener("ajax:success", this.handleSuccess);
+
+    $("#successModal").on("hide.bs.modal", () => { location.reload() }) //hacer funcion pa que se vea igual que los otros
+    //abrir el quote modal desde js y no desde html
   }
 
   handleOpenModal() {
@@ -59,7 +62,7 @@ class Quote {
 
   handleSuccess(event) {
     $("#submitQuoteModal").modal("hide");
-    $("#successModal").on("hide.bs.modal", () => { location.reload() })
+    $("#successModal").modal("show");
   }
 
 }
