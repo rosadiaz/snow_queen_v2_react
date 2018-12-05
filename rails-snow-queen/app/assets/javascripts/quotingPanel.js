@@ -34,9 +34,9 @@ class QuotingPanel {
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.totalDue = this.calculateTotalDue();
-    this.showTotalsNode();
     this.updateAreaNode();
     this.updateTotalDueNode();
+    this.showTotalsNode();
   }
   
   aggregateAreaInMts() {

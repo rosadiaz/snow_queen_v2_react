@@ -1,5 +1,5 @@
 class Map {
-	constructor(config) {
+  constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
     this.removeControl = this.initRemoveControl();
