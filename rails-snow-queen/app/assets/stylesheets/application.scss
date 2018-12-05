@@ -12,21 +12,34 @@
  *
  */
 $theme-colors: (
-  "primary":#61D5DD,
-  "warning":#fa7f28,
+  "light":#61D5DD,
+  "primary":#37393A,
   "success":#76B041,
-  "info": #99C5E6,
-  "secondary": #FFC914,
-  "light": #F6F7F7,
+  "warning": #D6C9C9,
+  "secondary": #E8EEF2,
+  "info": #F6F7F7,
   "dark": #177E89
 );
 
 @import 'bootstrap';
 
+body {
+  background-image: url('snow_background.gif');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 
 header {
-  background-color: rgba(97, 213, 221, 0.452);
-  height: 20vh;
+  // background-color: dark;
+  height: 10vh;
+
+  > img {
+    height: 100%;
+  }
+}
+
+main {
+  height: 90vh;
 }
 
 #map {
@@ -36,7 +49,7 @@ header {
 }
 
 #panel {
-  background-color: #177E89;
+  // background-color: #177E89;
 }
 
 .map-btn {
