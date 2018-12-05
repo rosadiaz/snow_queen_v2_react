@@ -69,7 +69,7 @@ class Map {
 
   addListeners() {
     document.addEventListener("DOMContentLoaded", $('#addressSubmitModal').modal("show"));
-    document.getElementById('AddressSearch').addEventListener('submit', this.handleSearchSubmit);
+    document.getElementById('AddressSearchModal').addEventListener('submit', this.handleSearchSubmit);
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
     this.removeControl.addEventListener('click', this.handleRemovePolygon);
   }
