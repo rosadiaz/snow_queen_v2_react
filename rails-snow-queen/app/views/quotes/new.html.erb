@@ -27,7 +27,7 @@
          Change address
       </button>
       <form action="" id="SubmitQuote">
-         <dl class="hidden">
+         <dl class="hidden" id="displayTotals">
             <dt class="m-3 mt-5">Selected area: </dt>
             <dd class="text-right"><span id="calculatedArea"></span> sq ft</dd>
             <dt class="p-3">Total: </dt>
@@ -58,18 +58,18 @@
                      <dl>Area: <span id="areaModal"></span> sq ft</dl>
                      <dl>Total: $<span id="totalModal"></span> </dl>
                      <div class="hidden" id="modal_errors"></div>
-                     <%= form.input :email, label: "Email"%>
+                     <%= form.input :email, label: "Email" %>
                      <%= form.input :first_name, label: "First name" %>
-                     <%= form.input :last_name, label: "Last name"%>
+                     <%= form.input :last_name, label: "Last name" %>
                      <%= form.input :address, :as => :hidden%>
-                     <%= form.input :area, :as => :hidden%>
-                     <%= form.input :total, :as => :hidden%>
-                     <%= form.input :polygons, :as => :hidden%>
-                     <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'}%>
+                     <%= form.input :area, :as => :hidden %>
+                     <%= form.input :total, :as => :hidden %>
+                     <%= form.input :polygons, :as => :hidden %>
+                     <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'} %>
                   </div>
                   <div class="modal-footer">
                      <button type="button" class="btn btn-warning" data-dismiss="modal">Not yet! I need to make changes</button>
-                     <%= form.submit "Submit quote", class: 'btn btn-primary', data: {toggle: 'modal', target: '#successModal'} %>
+                     <%= form.submit "Submit quote", class: 'btn btn-primary', data: { toggle: 'modal', target: '#successModal'} %>
                   </div>
                <% end %>
             </div>

@@ -7,7 +7,6 @@ class Map {
     this.marker = null;
     this.geocodedAddress = null;
     this.polygons = [];
-    this.polygonsJSON = null;
     this.onGeocodingResponse = config.onGeocodingResponse;
     this.onPolygonsChanged = config.onPolygonsChanged;
 

@@ -13,9 +13,7 @@ class Quote {
 
     const quoteFormNode = document.getElementById("new_quote");
     quoteFormNode.addEventListener("ajax:error", this.handleErrors);
-    quoteFormNode.addEventListener("ajax:success", () => { $("#submitQuoteModal").modal("hide") });
-    
-    $("#successModal").on("hide.bs.modal", () => { location.reload() });
+    quoteFormNode.addEventListener("ajax:success", this.handleSuccess);
   }
 
   handleOpenModal() {
@@ -57,6 +55,11 @@ class Quote {
     const errorNode = document.getElementById("modal_errors");
     errorNode.classList.remove("hidden");
     errorNode.innerText = this.errors.join(", ");
+  }
+
+  handleSuccess(event) {
+    $("#submitQuoteModal").modal("hide");
+    $("#successModal").on("hide.bs.modal", () => { location.reload() })
   }
 
 }

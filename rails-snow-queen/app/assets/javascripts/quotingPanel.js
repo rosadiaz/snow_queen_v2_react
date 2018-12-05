@@ -34,6 +34,7 @@ class QuotingPanel {
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.totalDue = this.calculateTotalDue();
+    this.showTotalsNode();
     this.updateAreaNode();
     this.updateTotalDueNode();
   }
@@ -55,10 +56,13 @@ class QuotingPanel {
     return this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
   }
 
+  showTotalsNode() {
+    document.getElementById("displayTotals").classList.remove("hidden");
+  }
+  
   updateAreaNode() {
     const areaNode = document.getElementById("calculatedArea");
     areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-    areaNode.parentNode.parentNode.classList.remove("hidden");
   }
 
   updateTotalDueNode() {
