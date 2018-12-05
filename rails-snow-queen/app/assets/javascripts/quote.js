@@ -10,8 +10,11 @@ class Quote {
   
   addListeners() {
     $("#submitQuoteModal").on("show.bs.modal", this.handleOpenModal);
-    document.getElementById("new_quote").addEventListener("ajax:error", this.handleErrors);
-    document.getElementById("new_quote").addEventListener("ajax:success", () => { $("#submitQuoteModal").modal("hide") });
+
+    const quoteFormNode = document.getElementById("new_quote");
+    quoteFormNode.addEventListener("ajax:error", this.handleErrors);
+    quoteFormNode.addEventListener("ajax:success", () => { $("#submitQuoteModal").modal("hide") });
+    
     $("#successModal").on("hide.bs.modal", () => { location.reload() });
   }
 
@@ -23,22 +26,22 @@ class Quote {
     let addressNodeInModal = document.getElementById("addressModal");
     addressNodeInModal.innerText = splitAddress;
 
-    let areaNodeInModal = document.getElementById("areaModal");
-    areaNodeInModal.innerText = `${quoteData.totalAreaInSqFt.toFixed(0)}`;
+    const areaNodeInModal = document.getElementById("areaModal");
+    areaNodeInModal.innerText = `${quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
     
-    let totalDueNodeInModal = document.getElementById("totalModal");
-    totalDueNodeInModal.innerText = `${quoteData.totalDue.toFixed(2)}`;
+    const totalDueNodeInModal = document.getElementById("totalModal");
+    totalDueNodeInModal.innerText = `${quoteData.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
     
-    let addressNodeInModalForm = document.getElementById("quote_address");
+    const addressNodeInModalForm = document.getElementById("quote_address");
     addressNodeInModalForm.value = quoteData.geocodedAddress;
     
-    let areaNodeInModalForm = document.getElementById("quote_area");
+    const areaNodeInModalForm = document.getElementById("quote_area");
     areaNodeInModalForm.value = quoteData.totalAreaInSqFt;
 
-    let totalDueNodeInModalForm = document.getElementById("quote_total");
+    const totalDueNodeInModalForm = document.getElementById("quote_total");
     totalDueNodeInModalForm.value = quoteData.totalDue;
 
-    let polygonsNodeInModalForm = document.getElementById("quote_polygons");
+    const polygonsNodeInModalForm = document.getElementById("quote_polygons");
     polygonsNodeInModalForm.value = polygonsLatLngs;
   }
 
@@ -51,7 +54,7 @@ class Quote {
 
   handleErrors(event) {
     this.errors = event.detail[0].errors;
-    let errorNode = document.getElementById("modal_errors");
+    const errorNode = document.getElementById("modal_errors");
     errorNode.classList.remove("hidden");
     errorNode.innerText = this.errors.join(", ");
   }
