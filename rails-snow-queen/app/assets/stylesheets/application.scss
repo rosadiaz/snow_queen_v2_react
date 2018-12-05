@@ -12,8 +12,8 @@
  *
  */
 $theme-colors: (
-  "light":#61D5DD,
-  "primary":#37393A,
+  "light":#ddf8fa,
+  "primary":#0698b190,
   "success":#76B041,
   "warning": #D6C9C9,
   "secondary": #E8EEF2,
@@ -24,14 +24,11 @@ $theme-colors: (
 @import 'bootstrap';
 
 body {
-  background-image: url('snow_background.gif');
-  background-repeat: no-repeat;
-  background-size: 100%;
 }
 
 header {
-  // background-color: dark;
   height: 10vh;
+  padding: 10px 0px 20px 5px;
 
   > img {
     height: 100%;
@@ -49,7 +46,6 @@ main {
 }
 
 #panel {
-  // background-color: #177E89;
 }
 
 .map-btn {
@@ -64,11 +60,15 @@ main {
 }
 
 #displayAddress {
-  font-weight: bold;
-  text-shadow: 2px 2px 10px white;
   
   > div:first-child {
-    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+
+  > div {
+    color: gray
   }
 }
 
@@ -79,4 +79,14 @@ main {
 #modal_errors {
   color: red;
   
+}
+
+.text-shadow {
+  text-shadow: 0.5px 0.5px 3px #4a4a4a;
+}
+
+.edit-button {
+  font-size: 20px;
+  border: 1px solid lightgray;
+  color: gray;
 }

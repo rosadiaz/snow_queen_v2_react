@@ -1,56 +1,79 @@
-<main class="container m-5">
-   <div class="d-flex row">
-      <div class="card col m-2 bg-light">
-         <h5 class="card-header font-weight-bold bg-dark text-white">Quote calculator</h5>
-         <div class="card-body" id="panel">
+<main class="container-fluid">
+   <div class="d-flex row justify-content-center">
+      <div class="col col-xl-2 mb-3">
+         <div class="card">
+            <h5 class="card-header font-weight-bold bg-primary text-white text-shadow">Quote calculator</h5>
+            <div class="card-body" id="panel">
 
-            <!-- ADDRESS SEARCH MODAL -->
-            <div class="modal fade" id="addressSubmitModal" tabindex="-1" role="dialog" aria-labelledby="addressSubmitModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-               <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h5 class="modal-title" id="addressSubmitModalLabel">Let's start looking for your address:</h5>
-                     </div>
-                     <form action="" id="AddressSearch">
-                        <div class="modal-body d-flex justify-content-center">
-                           <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" size="40">
-                           <input id="submit" type="submit" value="Find" class="btn btn-light ml-3">
-                        </div>
-                     </form>
-                  </div>
+            <div class="row hidden" id="displayAddress">
+               <div class="col-12 card-text" id="primaryAddress"></div>
+               <div class="col-8 card-text" id="secondaryAddress"></div>
+               <div class="col-4">
+                  <button 
+                     type="button" 
+                     class="btn edit-button btn-sm m-3" 
+                     data-toggle="modal" 
+                     data-target="#addressSubmitModal" 
+                     id="searchAddressButton">✎
+                  </button>
                </div>
             </div>
-            <div class="hidden address card-text" id="displayAddress">
-            </div>
-            <button type="button" class="btn btn-warning btn-sm m-3 hidden" data-toggle="modal" data-target="#addressSubmitModal" id="searchAddressButton">
-               Change address
-            </button>
-            <form action="" id="SubmitQuote">
-               <dl class="hidden">
-                  <dt class="m-3 mt-5">Selected area: </dt>
-                  <dd class="text-right"><span id="calculatedArea"></span> sq ft</dd>
-                  <dt class="p-3">Total: </dt>
-                  <dd class="text-right">$<span id="totalDue"></span></dd>
-                  <input 
-                     id="quoteSubmit" 
-                     type="submit" 
-                     value="Send me this quote" 
-                     class="btn btn-block btn-dark shadow-lg"
-                     data-toggle="modal" 
-                     data-target="#submitQuoteModal"
-                  >
-               </dl>
-            </form>
+               <form action="" id="SubmitQuote">
+                  <dl class="hidden">
+                     <dt class="m-3 mt-5">Selected area: </dt>
+                     <dd class="text-right"><span id="calculatedArea"></span> sq ft</dd>
+                     <dt class="p-3">Total: </dt>
+                     <dd class="text-right">$<span id="totalDue"></span></dd>
+                     <input 
+                        id="quoteSubmit" 
+                        type="submit" 
+                        value="Send me this quote" 
+                        class="btn btn-block btn-dark shadow-lg"
+                        data-toggle="modal" 
+                        data-target="#submitQuoteModal"
+                     >
+                  </dl>
+               </form>
 
+            </div>
          </div>
       </div>
+      <div class="col col-xl">
+         <div class="card">
+            <h5 class="card-header font-weight-bold bg-primary text-white text-shadow">Select the area to be serviced</h5>
+            <div class="card-body">
+            
+               <div id="map">
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</main>
+               <!-- ADDRESS SEARCH MODAL -->
+               <div class="modal fade" id="addressSubmitModal" tabindex="-1" role="dialog" aria-labelledby="addressSubmitModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                           <h5 class="modal-title text-white text-shadow" id="addressSubmitModalLabel">Let's start looking for your address:</h5>
+                        </div>
+                        <form action="" id="AddressSearch">
+                           <div class="modal-body d-flex justify-content-center">
+                              <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" size="45">
+                              <input id="submit" type="submit" value="Find" class="btn btn-dark ml-3">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
 
       <!-- QUOTE MODAL -->
       <div class="modal fade" id="submitQuoteModal" tabindex="-1" role="dialog" aria-labelledby="submitQuoteModalTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                <div class="modal-header">
-                  <h5 class="modal-title">Service details</h5>
+                  <h5 class="modal-title text-white text-shadow">Service details</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                   </button>
@@ -84,7 +107,7 @@
          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                <div class="modal-header">
-               <h5 class="modal-title" id="modalTitle">THANK YOU!</h5>
+               <h5 class="modal-title text-white text-shadow" id="modalTitle">THANK YOU!</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
@@ -99,17 +122,6 @@
             </div>
          </div>
       </div>
-
-      <div class="card col-9 m-2 bg-light">
-         <div class="card-body">
-         
-            <div id="map">
-            </div>
-
-         </div>
-      </div>
-   </div>
-</main>
 <script async defer
    src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=drawing&callback=initMap">
 </script>
