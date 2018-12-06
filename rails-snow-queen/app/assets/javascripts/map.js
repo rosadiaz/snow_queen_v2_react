@@ -34,7 +34,6 @@ class Map {
       strokeWeight: 5,
       strokeColor: '#2DC1D6',
       clickable: false,
-      // editable: true,
       zIndex: 1
     }
     return new google.maps.drawing.DrawingManager({
@@ -45,8 +44,6 @@ class Map {
         drawingModes: ['polygon', 'rectangle']
       },
       map: this.map,
-      // markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-      // markerOptions: {icon: 'snow_flake.png'},
       polygonOptions: drawingOptions,
       rectangleOptions: drawingOptions
     })

@@ -14,19 +14,21 @@ class QuotingPanel {
   showAddress(geocodedAddress) {
     if (geocodedAddress) {
       this.geocodedAddress = geocodedAddress;
-      const addressNode = document.getElementById("displayAddress");
+      const primaryAddressNode = document.getElementById("primaryAddress");
+      const secondaryAddressNode = document.getElementById("secondaryAddress");
+      while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
+      while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
+      
       let splitAddress = geocodedAddress.split(",");
-      while (addressNode.firstChild) { addressNode.removeChild(addressNode.firstChild) }
+      const div = document.createElement("div");
+      div.innerText = splitAddress.shift();
+      primaryAddressNode.appendChild(div);
       splitAddress.forEach(element => {
         const div = document.createElement("div");
         div.innerText = element;
-        addressNode.appendChild(div);
+        secondaryAddressNode.appendChild(div);
       });
-      addressNode.classList.remove("hidden");
-      document.getElementById("searchAddressButton").classList.remove("hidden");
-
-      const addressNodeInModal = document.getElementById("addressModal");
-      addressNodeInModal.innerText = splitAddress;
+      document.getElementById("displayAddress").classList.remove("hidden");
     }
   }
 

@@ -20,9 +20,20 @@ class Quote {
     let quoteData = this.onOpen();
     let polygonsLatLngs = this.getPolygonsJSON(quoteData.polygons);
 
+    const primaryAddressNode = document.getElementById("primaryAddressModal");
+    const secondaryAddressNode = document.getElementById("secondaryAddressModal");
+    while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
+    while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
+    
     let splitAddress = quoteData.geocodedAddress.split(",");
-    let addressNode = document.getElementById("addressModal");
-    addressNode.innerText = splitAddress;
+    const div = document.createElement("div");
+    div.innerText = splitAddress.shift();
+    primaryAddressNode.appendChild(div);
+    splitAddress.forEach(element => {
+      const div = document.createElement("div");
+      div.innerText = element;
+      secondaryAddressNode.appendChild(div);
+    }); 
 
     const areaNode = document.getElementById("areaModal");
     areaNode.innerText = `${quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
@@ -55,6 +66,7 @@ class Quote {
     const errorNode = document.getElementById("modal_errors");
     errorNode.classList.remove("hidden");
     errorNode.innerText = this.errors.join(", ");
+    document.getElementsByClassName("quote_email")[0].classList.add("m-0");
   }
 
   handleSuccess(event) {
