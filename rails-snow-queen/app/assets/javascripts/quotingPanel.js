@@ -22,10 +22,12 @@ class QuotingPanel {
       let splitAddress = geocodedAddress.split(",");
       const div = document.createElement("div");
       div.innerText = splitAddress.shift();
+      div.classList.add("primary-address");
       primaryAddressNode.appendChild(div);
       splitAddress.forEach(element => {
         const div = document.createElement("div");
         div.innerText = element;
+        div.classList.add("secondary-address");
         secondaryAddressNode.appendChild(div);
       });
       document.getElementById("displayAddress").classList.remove("hidden");
@@ -40,7 +42,7 @@ class QuotingPanel {
     this.updateTotalDueNode();
     this.showTotalsNode();
   }
-  
+    
   aggregateAreaInMts() {
     let totalAreaInMts = 0;
     this.polygons.forEach((p) => { 

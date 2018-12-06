@@ -2,6 +2,7 @@ class Quote {
   constructor(config) {
     this.errors = null;
     this.onOpen = config.onOpen;
+    this.staticMapURL = null;
     
     this.handleErrors = this.handleErrors.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -35,23 +36,38 @@ class Quote {
       secondaryAddressNode.appendChild(div);
     }); 
 
-    const areaNode = document.getElementById("areaModal");
-    areaNode.innerText = `${quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-    
-    const totalDueNode = document.getElementById("totalModal");
-    totalDueNode.innerText = `${quoteData.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
-    
-    const addressNodeForm = document.getElementById("quote_address");
-    addressNodeForm.value = quoteData.geocodedAddress;
-    
-    const areaNodeForm = document.getElementById("quote_area");
-    areaNodeForm.value = quoteData.totalAreaInSqFt;
+    this.updateStaticMap(quoteData.polygons);
 
-    const totalDueNodeForm = document.getElementById("quote_total");
-    totalDueNodeForm.value = quoteData.totalDue;
+    document.getElementById("areaModal").innerText = `${quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+    document.getElementById("totalModal").innerText = `${quoteData.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+    document.getElementById("quote_address").value = quoteData.geocodedAddress;
+    document.getElementById("quote_area").value = quoteData.totalAreaInSqFt;
+    document.getElementById("quote_total").value = quoteData.totalDue;
+    document.getElementById("quote_polygons").value = polygonsLatLngs;
+    document.getElementById("quote_static_map_URL").value = this.staticMapURL;
+    console.log("this.staticMapURL: ", this.staticMapURL);
+  }
 
-    const polygonsNodeForm = document.getElementById("quote_polygons");
-    polygonsNodeForm.value = polygonsLatLngs;
+  updateStaticMap(polygons) {
+    const APIkey = document.getElementById("map").getAttribute("data-api-key");
+    const polygonOptions = "path=color:0x61D5DD|fillcolor:0x61D5DD|weight:5|";
+    let polygonsStringArray = polygons.map(p => { 
+      let coordString = this.vertexToString(p);
+      return polygonOptions + coordString;
+    });
+
+    this.staticMapURL = `https://maps.googleapis.com/maps/api/staticmap?${polygonsStringArray.join("&")}&zoom=20&size=512x512&maptype=satellite&key=${APIkey}`
+    document.getElementById("staticMap").setAttribute("src", this.staticMapURL);
+  }
+
+  vertexToString(polygon) {
+    let vertexArray = polygon.getPath().getArray();
+    let coordArray =  vertexArray.map(vertex => { 
+      return [vertex.lat(), vertex.lng()].join(",");
+    });
+    let firstCoord = [vertexArray[0].lat(), vertexArray[0].lng()].join(",")
+    coordArray.push(firstCoord);
+    return coordArray.join("|");
   }
 
   getPolygonsJSON(polygons){
