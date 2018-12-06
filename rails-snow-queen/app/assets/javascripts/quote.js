@@ -2,6 +2,7 @@ class Quote {
   constructor(config) {
     this.errors = null;
     this.onOpen = config.onOpen;
+    this.staticMapURL = null;
     
     this.handleErrors = this.handleErrors.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -43,6 +44,8 @@ class Quote {
     document.getElementById("quote_area").value = quoteData.totalAreaInSqFt;
     document.getElementById("quote_total").value = quoteData.totalDue;
     document.getElementById("quote_polygons").value = polygonsLatLngs;
+    document.getElementById("quote_static_map_URL").value = this.staticMapURL;
+    console.log("this.staticMapURL: ", this.staticMapURL);
   }
 
   updateStaticMap(polygons) {
@@ -53,8 +56,8 @@ class Quote {
       return polygonOptions + coordString;
     });
 
-    let staticMapURL = `https://maps.googleapis.com/maps/api/staticmap?${polygonsStringArray.join("&")}&zoom=20&size=512x512&maptype=satellite&key=${APIkey}`
-    document.getElementById("staticMap").setAttribute("src", staticMapURL);
+    this.staticMapURL = `https://maps.googleapis.com/maps/api/staticmap?${polygonsStringArray.join("&")}&zoom=20&size=512x512&maptype=satellite&key=${APIkey}`
+    document.getElementById("staticMap").setAttribute("src", this.staticMapURL);
   }
 
   vertexToString(polygon) {
