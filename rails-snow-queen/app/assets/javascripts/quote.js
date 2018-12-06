@@ -23,6 +23,8 @@ class Quote {
     let splitAddress = quoteData.geocodedAddress.split(",");
     const primaryAddressNode = document.getElementById("primaryAddressModal");
     const secondaryAddressNode = document.getElementById("secondaryAddressModal");
+    while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
+    while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
     splitAddress.forEach((element, i) => {
       const div = document.createElement("div");
       div.innerText = element;
@@ -64,6 +66,7 @@ class Quote {
     const errorNode = document.getElementById("modal_errors");
     errorNode.classList.remove("hidden");
     errorNode.innerText = this.errors.join(", ");
+    document.getElementsByClassName("quote_email")[0].classList.add("m-0");
   }
 
   handleSuccess(event) {

@@ -19,14 +19,14 @@
                </div>
                <form action="" id="SubmitQuote">
                   <div class="hidden row" id="displayTotals">
-                     <div class="col-12 mt-1">
+                     <div class="col-12 mt-4">
                         <div class="card">
                            <div class="card-body text-center p-1">
                               <span id="calculatedArea" class="font-weight-bold font-size-35"></span> sq ft
                            </div>
                         </div>
                      </div>
-                     <div class="col-12 mt-1">
+                     <div class="col-12 mt-3">
                         <div class="card">
                            <div class="card-body text-center p-1">
                               <span class="font-weight-bold currency-symbol text-secondary">$</span>
@@ -34,7 +34,7 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-12 mt-1">
+                     <div class="col-12 mt-3">
                         <input 
                            id="quoteSubmit" 
                            type="submit" 
@@ -94,7 +94,7 @@
                   <div id="primaryAddressModal" class="col-12 card-text" ></div> 
                   <div id="secondaryAddressModal" class="col-12 card-text secondary" ></div> 
                   
-                  <div class="col-12 mt-1">
+                  <div class="col-12 mt-4">
                      <div class="card">
                         <div class="card-body text-center p-1">
                            <span id="areaModal" class="font-weight-bold font-size-35"></span> sq ft
@@ -102,7 +102,7 @@
                      </div>
                   </div>
 
-                  <div class="col-12 mt-1">
+                  <div class="col-12 mt-3">
                      <div class="card">
                         <div class="card-body text-center p-1">
                            <span class="font-weight-bold currency-symbol text-secondary">$</span>
@@ -111,9 +111,9 @@
                      </div>
                   </div>
                   
-                  <div class="col-12">
+                  <div class="col-12 mt-3">
+                     <%= form.input :email, label: "Email", class: "" %>
                   <div class="hidden modal_errors col-12 p-0" id="modal_errors"></div>
-                     <%= form.input :email, label: "Email" %>
                   </div>
                   <div class="col-12">
                      <%= form.input :first_name, label: "First name" %>

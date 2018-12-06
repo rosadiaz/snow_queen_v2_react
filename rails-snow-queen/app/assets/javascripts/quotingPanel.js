@@ -29,9 +29,6 @@ class QuotingPanel {
         }
       });
       document.getElementById("displayAddress").classList.remove("hidden");
-
-      const addressNodeInModal = document.getElementById("addressModal");
-      addressNodeInModal.innerText = splitAddress;
     }
   }
 
