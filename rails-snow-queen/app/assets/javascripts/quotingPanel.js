@@ -41,27 +41,6 @@ class QuotingPanel {
     this.updateAreaNode();
     this.updateTotalDueNode();
     this.showTotalsNode();
-
-    const APIkey = document.getElementById("map").getAttribute("data-api-key");
-    console.log("APIkey: ", APIkey);
-    const polygonOptions = "path=color:0x61D5DD|fillcolor:0x61D5DD|weight:5|"
-    let polygonsStringArray = this.polygons.map(p => { 
-      let vertexArray = p.getPath().getArray()
-      let coordArray =  vertexArray.map(vertex => { 
-        return vertex.lat() + "," + vertex.lng();
-      })
-      let firstCoord = [vertexArray[0].lat(), vertexArray[0].lng()].join(",")
-      coordArray.push(firstCoord)
-      return polygonOptions + coordArray.join("|")
-    });
-
-    const staticMapNode = document.getElementById("staticMap")
-    const img = document.createElement("img");
-    img.classList.add("card-img-top","p-2");
-    let staticMapURL = `https://maps.googleapis.com/maps/api/staticmap?${polygonsStringArray.join("&")}&zoom=20&size=512x512&maptype=satellite&key=${APIkey}`
-    img.setAttribute("src", staticMapURL);
-    while (staticMapNode.firstChild) { staticMapNode.removeChild(staticMapNode.firstChild) }
-    staticMapNode.appendChild(img);
   }
     
   aggregateAreaInMts() {
