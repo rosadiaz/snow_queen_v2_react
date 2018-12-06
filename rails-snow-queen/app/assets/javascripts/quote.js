@@ -20,19 +20,19 @@ class Quote {
     let quoteData = this.onOpen();
     let polygonsLatLngs = this.getPolygonsJSON(quoteData.polygons);
 
-    let splitAddress = quoteData.geocodedAddress.split(",");
     const primaryAddressNode = document.getElementById("primaryAddressModal");
     const secondaryAddressNode = document.getElementById("secondaryAddressModal");
     while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
     while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
-    splitAddress.forEach((element, i) => {
+    
+    let splitAddress = quoteData.geocodedAddress.split(",");
+    const div = document.createElement("div");
+    div.innerText = splitAddress.shift();
+    primaryAddressNode.appendChild(div);
+    splitAddress.forEach(element => {
       const div = document.createElement("div");
       div.innerText = element;
-      if (i === 0) { 
-        primaryAddressNode.appendChild(div) 
-      } else {
-        secondaryAddressNode.appendChild(div);
-      }
+      secondaryAddressNode.appendChild(div);
     }); 
 
     const areaNode = document.getElementById("areaModal");

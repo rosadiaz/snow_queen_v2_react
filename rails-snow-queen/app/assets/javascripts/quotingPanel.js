@@ -16,17 +16,17 @@ class QuotingPanel {
       this.geocodedAddress = geocodedAddress;
       const primaryAddressNode = document.getElementById("primaryAddress");
       const secondaryAddressNode = document.getElementById("secondaryAddress");
-      let splitAddress = geocodedAddress.split(",");
       while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
       while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
-      splitAddress.forEach((element, i) => {
+      
+      let splitAddress = geocodedAddress.split(",");
+      const div = document.createElement("div");
+      div.innerText = splitAddress.shift();
+      primaryAddressNode.appendChild(div);
+      splitAddress.forEach(element => {
         const div = document.createElement("div");
         div.innerText = element;
-        if (i === 0) { 
-          primaryAddressNode.appendChild(div) 
-        } else {
-          secondaryAddressNode.appendChild(div);
-        }
+        secondaryAddressNode.appendChild(div);
       });
       document.getElementById("displayAddress").classList.remove("hidden");
     }
