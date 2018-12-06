@@ -54,6 +54,17 @@
                </div>
                <%= simple_form_for(@quote, remote: true) do |form| %>
                   <div class="modal-body">
+                     <dl>Map: 
+                        <span id="mapImageModal">
+<img 
+   src="//maps.googleapis.com/maps/api/staticmap
+?size=400x400&center=40.653279,-73.959816&zoom=11
+&path=fillcolor:0xAA000033%7Ccolor:0xFFFFFF00%7Cenc:}zswFtikbMjJzZ%7CRdPfZ}DxWvBjWpF~IvJnEvBrMvIvUpGtQpFhOQdKpz@bIx{A%7CPfYlvApz@bl@tcAdTpGpVwQtX}i@%7CGen@lCeAda@bjA%60q@v}@rfAbjA%7CEwBpbAd_@he@hDbu@uIzWcWtZoTdImTdIwu@tDaOXw_@fc@st@~VgQ%7C[uPzNtA%60LlEvHiYyLs^nPhCpG}SzCNwHpz@cEvXg@bWdG%60]lL~MdTmEnCwJ[iJhOae@nCm[%60Aq]qE_pAaNiyBuDurAuB}}Ay%60@%7CEKv_@?%7C[qGji@lAhYyH%60@Xiw@tBerAs@q]jHohAYkSmW?aNoaAbR}LnPqNtMtIbRyRuDef@eT_z@mW_Nm%7CB~j@zC~hAyUyJ_U{Z??cPvg@}s@sHsc@_z@cj@kp@YePoNyYyb@_iAyb@gBw^bOokArcA}GwJuzBre@i\tf@sZnd@oElb@hStW{]vv@??kz@~vAcj@zKa%60Atf@uQj_Aee@pU_UrcA
+&key=AIzaSyDafFObZ3lBKKVKjYwxGL2xcvqVEwC68XY" 
+   alt="Requested service area"
+>
+                        </span> 
+                     </dl>
                      <dl>Address: <span id="addressModal"></span> </dl>
                      <dl>Area: <span id="areaModal"></span> sq ft</dl>
                      <dl>Total: $<span id="totalModal"></span> </dl>
@@ -99,6 +110,12 @@
 
    </div>
    <div id="map" class="col-8">
+   </div>
+   <div>Map
+      <img 
+         src="https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&key=<%=Rails.application.credentials.google_api%>" 
+         alt="Requested service area"
+      >
    </div>
 </div>
 
