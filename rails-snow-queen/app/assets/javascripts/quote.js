@@ -10,9 +10,10 @@ class Quote {
   
   addListeners() {
     $("#submitQuoteModal").on("show.bs.modal", this.handleOpenModal);
-    document.getElementById("new_quote").addEventListener("ajax:error", this.handleErrors);
-    document.getElementById("new_quote").addEventListener("ajax:success", () => { $("#submitQuoteModal").modal("hide") });
-    $("#successModal").on("hide.bs.modal", () => { location.reload() });
+    const quoteFormNode = document.getElementById("new_quote");
+    quoteFormNode.addEventListener("ajax:error", this.handleErrors);
+    quoteFormNode.addEventListener("ajax:success", this.handleSuccess);
+    $("#successModal").on("hide.bs.modal", this.handleSuccessModalClose)
   }
 
   handleOpenModal() {
@@ -20,26 +21,26 @@ class Quote {
     let polygonsLatLngs = this.getPolygonsJSON(quoteData.polygons);
 
     let splitAddress = quoteData.geocodedAddress.split(",");
-    let addressNodeInModal = document.getElementById("addressModal");
-    addressNodeInModal.innerText = splitAddress;
+    let addressNode = document.getElementById("addressModal");
+    addressNode.innerText = splitAddress;
 
-    let areaNodeInModal = document.getElementById("areaModal");
-    areaNodeInModal.innerText = `${quoteData.totalAreaInSqFt.toFixed(0)}`;
+    const areaNode = document.getElementById("areaModal");
+    areaNode.innerText = `${quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
     
-    let totalDueNodeInModal = document.getElementById("totalModal");
-    totalDueNodeInModal.innerText = `${quoteData.totalDue.toFixed(2)}`;
+    const totalDueNode = document.getElementById("totalModal");
+    totalDueNode.innerText = `${quoteData.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
     
-    let addressNodeInModalForm = document.getElementById("quote_address");
-    addressNodeInModalForm.value = quoteData.geocodedAddress;
+    const addressNodeForm = document.getElementById("quote_address");
+    addressNodeForm.value = quoteData.geocodedAddress;
     
-    let areaNodeInModalForm = document.getElementById("quote_area");
-    areaNodeInModalForm.value = quoteData.totalAreaInSqFt;
+    const areaNodeForm = document.getElementById("quote_area");
+    areaNodeForm.value = quoteData.totalAreaInSqFt;
 
-    let totalDueNodeInModalForm = document.getElementById("quote_total");
-    totalDueNodeInModalForm.value = quoteData.totalDue;
+    const totalDueNodeForm = document.getElementById("quote_total");
+    totalDueNodeForm.value = quoteData.totalDue;
 
-    let polygonsNodeInModalForm = document.getElementById("quote_polygons");
-    polygonsNodeInModalForm.value = polygonsLatLngs;
+    const polygonsNodeForm = document.getElementById("quote_polygons");
+    polygonsNodeForm.value = polygonsLatLngs;
   }
 
   getPolygonsJSON(polygons){
@@ -51,10 +52,18 @@ class Quote {
 
   handleErrors(event) {
     this.errors = event.detail[0].errors;
-    let errorNode = document.getElementById("modal_errors");
+    const errorNode = document.getElementById("modal_errors");
     errorNode.classList.remove("hidden");
     errorNode.innerText = this.errors.join(", ");
   }
 
+  handleSuccess(event) {
+    $("#submitQuoteModal").modal("hide");
+    $("#successModal").modal("show");
+  }
+
+  handleSuccessModalClose() {
+    location.reload();
+  }
 }
 

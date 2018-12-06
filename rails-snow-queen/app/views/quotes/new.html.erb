@@ -18,7 +18,7 @@
                   </div>
                </div>
                <form action="" id="SubmitQuote">
-                  <dl class="hidden">
+                  <dl class="hidden" id="displayTotals">
                      <dt class="m-3 mt-5">Selected area: </dt>
                      <dd class="text-right"><span id="calculatedArea"></span> sq ft</dd>
                      <dt class="p-3">Total: </dt>
@@ -47,6 +47,7 @@
       </div>
    </div>
 </main>
+
 <!-- ADDRESS SEARCH MODAL -->
 <div class="modal fade" id="addressSubmitModal" tabindex="-1" role="dialog" aria-labelledby="addressSubmitModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -54,7 +55,7 @@
          <div class="modal-header bg-primary">
             <h5 class="modal-title text-white text-shadow" id="addressSubmitModalLabel">Let's start looking for your address:</h5>
          </div>
-         <form action="" id="AddressSearch">
+         <form action="" id="AddressSearchModal">
             <div class="modal-body d-flex justify-content-center">
                <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" size="45">
                <input id="submit" type="submit" value="Find" class="btn btn-dark ml-3">
@@ -79,19 +80,19 @@
                <dl>Address: <span id="addressModal"></span> </dl>
                <dl>Area: <span id="areaModal"></span> sq ft</dl>
                <dl>Total: $<span id="totalModal"></span> </dl>
-               <div class="hidden" id="modal_errors" class="modal_errors"></div>
-               <%= form.input :email, label: "Email"%>
+               <div class="hidden modal_errors" id="modal_errors"></div>
+               <%= form.input :email, label: "Email" %>
                <%= form.input :first_name, label: "First name" %>
-               <%= form.input :last_name, label: "Last name"%>
-               <%= form.input :address, :as => :hidden%>
-               <%= form.input :area, :as => :hidden%>
-               <%= form.input :total, :as => :hidden%>
-               <%= form.input :polygons, :as => :hidden%>
-               <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'}%>
+               <%= form.input :last_name, label: "Last name" %>
+               <%= form.input :address, :as => :hidden %>
+               <%= form.input :area, :as => :hidden %>
+               <%= form.input :total, :as => :hidden %>
+               <%= form.input :polygons, :as => :hidden %>
+               <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'} %>
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-warning" data-dismiss="modal">Not yet! I need to make changes</button>
-               <%= form.submit "Submit quote", class: 'btn btn-dark', data: {toggle: 'modal', target: '#successModal'} %>
+               <%= form.submit "Submit quote", class: 'btn btn-dark' %>
             </div>
          <% end %>
       </div>
