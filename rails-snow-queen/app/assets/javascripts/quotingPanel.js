@@ -39,7 +39,7 @@ class QuotingPanel {
     this.showTotalsNode();
 
     const APIkey = document.getElementById("map").getAttribute("data-api-key");
-    const polygonOptions = "path=color:0xff0000ff|fillcolor:0x00ff00ff|weight:5|"
+    const polygonOptions = "path=color:0x61D5DD|fillcolor:0x61D5DD|weight:5|"
     let polygonsStringArray = this.polygons.map(p => { 
       let vertexArray = p.getPath().getArray()
       let coordArray =  vertexArray.map(vertex => { 
@@ -52,7 +52,7 @@ class QuotingPanel {
 
     const staticMapNode = document.getElementById("staticMap")
     const img = document.createElement("img");
-    let staticMapURL = `https://maps.googleapis.com/maps/api/staticmap?${polygonsStringArray.join("&")}&zoom=20&size=512x512&key=${APIkey}`
+    let staticMapURL = `https://maps.googleapis.com/maps/api/staticmap?${polygonsStringArray.join("&")}&zoom=20&size=512x512&maptype=satellite&key=${APIkey}`
     img.setAttribute("src", staticMapURL);
     while (staticMapNode.firstChild) { staticMapNode.removeChild(staticMapNode.firstChild) }
     staticMapNode.appendChild(img);
