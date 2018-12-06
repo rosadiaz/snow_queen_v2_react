@@ -22,10 +22,12 @@ class QuotingPanel {
       let splitAddress = geocodedAddress.split(",");
       const div = document.createElement("div");
       div.innerText = splitAddress.shift();
+      div.classList.add("primary-address");
       primaryAddressNode.appendChild(div);
       splitAddress.forEach(element => {
         const div = document.createElement("div");
         div.innerText = element;
+        div.classList.add("secondary-address");
         secondaryAddressNode.appendChild(div);
       });
       document.getElementById("displayAddress").classList.remove("hidden");
@@ -55,6 +57,7 @@ class QuotingPanel {
 
     const staticMapNode = document.getElementById("staticMap")
     const img = document.createElement("img");
+    img.classList.add("card-img-top","p-2");
     let staticMapURL = `https://maps.googleapis.com/maps/api/staticmap?${polygonsStringArray.join("&")}&zoom=20&size=512x512&maptype=satellite&key=${APIkey}`
     img.setAttribute("src", staticMapURL);
     while (staticMapNode.firstChild) { staticMapNode.removeChild(staticMapNode.firstChild) }

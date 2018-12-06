@@ -53,17 +53,14 @@ main {
   display: none;
 }
 
-.displayAddress {
-  
-  > div:first-child {
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-  }
+.primary-address {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
 
-  > .secondary {
-    color: gray
-  }
+.secondary-address {
+  color: gray
 }
 
 .simple_form abbr {
