@@ -21,8 +21,17 @@ class Quote {
     let polygonsLatLngs = this.getPolygonsJSON(quoteData.polygons);
 
     let splitAddress = quoteData.geocodedAddress.split(",");
-    let addressNode = document.getElementById("addressModal");
-    addressNode.innerText = splitAddress;
+    const primaryAddressNode = document.getElementById("primaryAddressModal");
+    const secondaryAddressNode = document.getElementById("secondaryAddressModal");
+    splitAddress.forEach((element, i) => {
+      const div = document.createElement("div");
+      div.innerText = element;
+      if (i === 0) { 
+        primaryAddressNode.appendChild(div) 
+      } else {
+        secondaryAddressNode.appendChild(div);
+      }
+    }); 
 
     const areaNode = document.getElementById("areaModal");
     areaNode.innerText = `${quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;

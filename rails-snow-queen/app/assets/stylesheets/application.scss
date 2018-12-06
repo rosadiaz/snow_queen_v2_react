@@ -16,7 +16,7 @@ $theme-colors: (
   "primary":#0698b190,
   "success":#76B041,
   "warning": #D6C9C9,
-  "secondary": #E8EEF2,
+  "secondary": gray,
   "info": #F6F7F7,
   "dark": #177E89
 );
@@ -59,7 +59,7 @@ main {
   display: none;
 }
 
-#displayAddress {
+.displayAddress {
   
   > div:first-child {
     font-size: 24px;
@@ -67,7 +67,7 @@ main {
     color: black;
   }
 
-  > div {
+  > .secondary {
     color: gray
   }
 }
@@ -88,4 +88,13 @@ main {
   font-size: 20px;
   border: 1px solid lightgray;
   color: gray;
+}
+
+.font-size-35 {
+  font-size: 35px;
+}
+
+.currency-symbol {
+  font-size: 25px;
+  vertical-align: super;
 }

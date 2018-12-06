@@ -4,9 +4,9 @@
          <div class="card">
             <h5 class="card-header font-weight-bold bg-primary text-white text-shadow">Quote calculator</h5>
             <div class="card-body" id="panel">
-               <div class="row hidden" id="displayAddress">
+               <div class="row hidden displayAddress" id="displayAddress">
                   <div class="col-12 card-text" id="primaryAddress"></div>
-                  <div class="col-8 card-text" id="secondaryAddress"></div>
+                  <div class="col-8 card-text secondary" id="secondaryAddress"></div>
                   <div class="col-4">
                      <button 
                         type="button" 
@@ -18,20 +18,33 @@
                   </div>
                </div>
                <form action="" id="SubmitQuote">
-                  <dl class="hidden" id="displayTotals">
-                     <dt class="m-3 mt-5">Selected area: </dt>
-                     <dd class="text-right"><span id="calculatedArea"></span> sq ft</dd>
-                     <dt class="p-3">Total: </dt>
-                     <dd class="text-right">$<span id="totalDue"></span></dd>
-                     <input 
-                        id="quoteSubmit" 
-                        type="submit" 
-                        value="Send me this quote" 
-                        class="btn btn-block btn-dark shadow-lg"
-                        data-toggle="modal" 
-                        data-target="#submitQuoteModal"
-                     >
-                  </dl>
+                  <div class="hidden row" id="displayTotals">
+                     <div class="col-12 mt-1">
+                        <div class="card">
+                           <div class="card-body text-center p-1">
+                              <span id="calculatedArea" class="font-weight-bold font-size-35"></span> sq ft
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 mt-1">
+                        <div class="card">
+                           <div class="card-body text-center p-1">
+                              <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                              <span id="totalDue" class="font-weight-bold font-size-35"></span> CAD
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 mt-1">
+                        <input 
+                           id="quoteSubmit" 
+                           type="submit" 
+                           value="Send me this quote" 
+                           class="btn btn-block btn-dark shadow-lg"
+                           data-toggle="modal" 
+                           data-target="#submitQuoteModal"
+                        >
+                     </div>
+                  </div>
                </form>
             </div>
          </div>
@@ -77,18 +90,53 @@
          </div>
          <%= simple_form_for(@quote, remote: true) do |form| %>
             <div class="modal-body">
-               <dl>Address: <span id="addressModal"></span> </dl>
-               <dl>Area: <span id="areaModal"></span> sq ft</dl>
-               <dl>Total: $<span id="totalModal"></span> </dl>
-               <div class="hidden modal_errors" id="modal_errors"></div>
-               <%= form.input :email, label: "Email" %>
-               <%= form.input :first_name, label: "First name" %>
-               <%= form.input :last_name, label: "Last name" %>
-               <%= form.input :address, :as => :hidden %>
-               <%= form.input :area, :as => :hidden %>
-               <%= form.input :total, :as => :hidden %>
-               <%= form.input :polygons, :as => :hidden %>
-               <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'} %>
+               <div class="row displayAddress">
+                  <div id="primaryAddressModal" class="col-12 card-text" ></div> 
+                  <div id="secondaryAddressModal" class="col-12 card-text secondary" ></div> 
+                  
+                  <div class="col-12 mt-1">
+                     <div class="card">
+                        <div class="card-body text-center p-1">
+                           <span id="areaModal" class="font-weight-bold font-size-35"></span> sq ft
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-12 mt-1">
+                     <div class="card">
+                        <div class="card-body text-center p-1">
+                           <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                           <span id="totalModal" class="font-weight-bold font-size-35"></span> CAD
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="col-12">
+                  <div class="hidden modal_errors col-12 p-0" id="modal_errors"></div>
+                     <%= form.input :email, label: "Email" %>
+                  </div>
+                  <div class="col-12">
+                     <%= form.input :first_name, label: "First name" %>
+                  </div>
+                  <div class="col-12">
+                     <%= form.input :last_name, label: "Last name" %>
+                  </div>
+                  <div class="col-12">
+                     <%= form.input :address, :as => :hidden %>
+                  </div>
+                  <div class="col-12">
+                     <%= form.input :area, :as => :hidden %>
+                  </div>
+                  <div class="col-12">
+                     <%= form.input :total, :as => :hidden %>
+                  </div>
+                  <div class="col-12">
+                     <%= form.input :polygons, :as => :hidden %>
+                  </div>
+                  <div class="col-12">
+                     <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'} %>
+                  </div>
+               </div>
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-warning" data-dismiss="modal">Not yet! I need to make changes</button>
